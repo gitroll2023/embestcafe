@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="fixed w-full bg-white shadow-md z-50">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="fixed top-[80px] left-0 w-full bg-white bg-opacity-90 backdrop-blur-md shadow-sm z-50 py-3">
+      <div className="container mx-auto px-4 flex justify-between items-center">
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image 

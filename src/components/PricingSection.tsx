@@ -134,7 +134,35 @@ const PricingSection = () => {
       
       <div className="mt-12 text-center">
         <p className="text-gray-600 mb-4">※ 최소 3개월부터 계약 가능합니다.</p>
-     
+        
+        <div className="max-w-3xl mx-auto mt-8 bg-gray-100 p-6 rounded-xl shadow-sm">
+          <h3 className="text-xl font-bold mb-4 text-gray-800">당신이 EM베스트를 선택해야하는 이유?</h3>
+          <div className="text-left">
+            <p className="mb-3 text-gray-700">
+              <span className="font-semibold">도대체 누가 월 10 ~ 30만원으로 마케팅을 해줄까요?</span> 
+              이런 합리적인 가격은 다른 곳에서는 절대 볼 수 없었을 것입니다.
+            </p>
+            <p className="mb-3 text-gray-700">
+              일반 마케팅 대행사에만 맡겨도 <span className="font-semibold text-primary">최소 몇백만원</span>의 비용이 발생합니다. 
+              그에 비해 EM베스트는 합리적인 가격으로 타겟 고객층에 직접 접근할 수 있는 기회를 제공합니다.
+            </p>
+            <p className="mb-5 text-gray-700">
+              <span className="font-semibold">FPS 장비를 판매하시는 분들</span>이라면, 
+              EM베스트와의 협업이 귀사의 마케팅 효율성과 ROI를 크게 향상시킬 것입니다.
+            </p>
+            
+            <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-3 rounded">
+              <p className="mb-2 text-gray-800">
+                <span className="font-semibold">바이럴 마케팅</span>으로 인해 카페 이곳저곳에서 <span className="text-red-600 font-semibold">강제퇴출 당하는 사례가 많습니다</span>. 
+                더 비싼 돈을 주고 대행사에 맡겼더니 그런 상황이 생기셨다니, 정말 안타깝습니다.
+              </p>
+              <p className="text-gray-800 font-medium">
+                네이버 대표카페 <span className="text-primary font-bold">"EM베스트"</span>에서 
+                더 많은 혜택을 누리십시오.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

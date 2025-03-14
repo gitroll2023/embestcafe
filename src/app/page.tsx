@@ -7,19 +7,23 @@ import PricingSection from '../components/PricingSection';
 import ContactSection from '../components/ContactSection';
 import FaqSection from '../components/FaqSection';
 import Footer from '../components/Footer';
+import EarlyBirdBanner from '../components/EarlyBirdBanner';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <HeroSection />
-      <IntroSection />
-      <BenefitsSection />
-      <CaseStudiesSection />
-      <PricingSection />
-      <ContactSection />
-      <FaqSection />
-      <Footer />
-    </main>
+    <>
+      <EarlyBirdBanner />
+      <main className="min-h-screen pt-[140px]">
+        <Header />
+        <HeroSection />
+        <IntroSection />
+        <BenefitsSection />
+        <CaseStudiesSection />
+        <PricingSection />
+        <ContactSection />
+        <FaqSection />
+        <Footer />
+      </main>
+    </>
   );
 }
