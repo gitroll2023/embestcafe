@@ -5,7 +5,6 @@ const nextConfig = {
     domains: ['images.unsplash.com', 'i.namu.wiki'],
     unoptimized: true,
   },
-  output: 'export',
 };
 
 module.exports = nextConfig;
