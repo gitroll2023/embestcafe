@@ -41,7 +41,7 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
       ],
       benefits: [
         '14.7만+ 활성 회원에게 직접 노출',
-        '월 150만+ 페이지뷰 달성',
+        '월 150만+ 페이지뷰 달성 (실측 기준)',
         'FPS 게임 특화 타겟 마케팅',
         '실시간 피드백 및 리뷰 수집'
       ]

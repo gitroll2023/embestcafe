@@ -25,7 +25,7 @@ const MarketingOptionModal: React.FC<MarketingOptionModalProps> = ({ isOpen, onC
         {
           icon: '📸',
           name: '인스타그램',
-          stats: '팔로워 6천+',
+          stats: '팔로워 7.1천+',
           description: '릴스 및 포스트 제작'
         },
         {

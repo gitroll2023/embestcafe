@@ -82,7 +82,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
       ],
       includes: [
         '유튜브 영상 제작 (1.12만+ 구독자)',
-        '인스타그램 릴스/포스트 (6천+ 팔로워)',
+        '인스타그램 릴스/포스트 (7.1천+ 팔로워)',
         '네이버 블로그 상세 리뷰',
         '카페 내 공식 리뷰 게시'
       ]

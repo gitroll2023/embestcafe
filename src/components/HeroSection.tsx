@@ -50,6 +50,7 @@ const HeroSection = () => {
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
               <div className="text-3xl font-bold text-primary mb-2">150만+</div>
               <div className="text-gray-400">월간 페이지뷰</div>
+              <div className="text-xs text-gray-500 mt-1">(실측 기준)</div>
             </div>
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
               <div className="text-3xl font-bold text-primary mb-2">95%</div>
@@ -94,7 +95,7 @@ const HeroSection = () => {
               <div className="w-1 h-4 bg-gray-600 hidden sm:block"></div>
               <div className="text-sm text-gray-300">33개 파트너사</div>
               <div className="w-1 h-4 bg-gray-600 hidden sm:block"></div>
-              <div className="text-sm text-gray-300">10년+ 운영</div>
+              <div className="text-sm text-gray-300">13년+ 운영 (2011년 개설)</div>
             </div>
           </div>
         </div>

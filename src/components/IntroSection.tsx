@@ -23,7 +23,7 @@ const IntroSection = () => {
         </svg>
       ),
       number: "150만+",
-      label: "월간 페이지뷰",
+      label: "월간 페이지뷰 (실측)",
       description: "지속적으로 증가하는 트래픽"
     },
     {
@@ -42,7 +42,7 @@ const IntroSection = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      number: "70%",
+      number: "90%",
       label: "비용 절감",
       description: "일반 대행사 대비 마케팅 비용"
     }
@@ -109,7 +109,7 @@ const IntroSection = () => {
                 <h4 className="text-xl font-bold mb-3">❌ 일반 대행사</h4>
                 <ul className="text-left space-y-2">
                   <li>• 불특정 다수를 대상으로 한 광고</li>
-                  <li>• 높은 비용 (월 400-500만원)</li>
+                  <li>• 높은 비용 (월 200-300만원)</li>
                   <li>• 낮은 전환율 (2-3%)</li>
                   <li>• 일방적인 광고 메시지</li>
                 </ul>

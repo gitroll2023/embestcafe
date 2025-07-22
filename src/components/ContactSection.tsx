@@ -309,7 +309,7 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
               </p>
               <p className="opacity-95">
                 EM베스트는 이미 구축된 14.7만+ 커뮤니티와 자체 콘텐츠 제작 시스템으로<br />
-                운영 비용을 최소화했기 때문입니다. <span className="font-bold text-yellow-300">얼리버드 기간이 끝나면 정상가로 전환됩니다.</span>
+                운영 비용을 최소화했기 때문입니다. <span className="font-bold text-yellow-300">2025년 9월 1일 이후 정상가로 전환됩니다.</span>
               </p>
             </div>
           </div>

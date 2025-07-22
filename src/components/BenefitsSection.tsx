@@ -165,7 +165,10 @@ const BenefitsSection = () => {
                   </div>
                   <div className="flex justify-between items-center pb-3 border-b">
                     <span className="text-gray-600">월간 페이지뷰</span>
-                    <span className="font-bold text-2xl text-primary">150만+</span>
+                    <div className="text-right">
+                      <span className="font-bold text-2xl text-primary">150만+</span>
+                      <p className="text-xs text-gray-500 mt-1">(실측 기준)</p>
+                    </div>
                   </div>
                   <div className="flex justify-between items-center pb-3 border-b">
                     <span className="text-gray-600">유튜브 구독자</span>
@@ -173,7 +176,7 @@ const BenefitsSection = () => {
                   </div>
                   <div className="flex justify-between items-center pb-3 border-b">
                     <span className="text-gray-600">인스타그램 팔로워</span>
-                    <span className="font-bold text-2xl text-primary">6천+</span>
+                    <span className="font-bold text-2xl text-primary">7.1천+</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">블로그 등급</span>
