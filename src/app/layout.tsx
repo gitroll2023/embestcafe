@@ -24,12 +24,15 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <Toaster
-          position="top-right"
+          position="top-center"
           toastOptions={{
             duration: 3000,
             style: {
               background: '#333',
               color: '#fff',
+              fontSize: '16px',
+              padding: '16px',
+              maxWidth: '500px',
             },
             success: {
               style: {
@@ -38,7 +41,7 @@ export default function RootLayout({
             },
             error: {
               style: {
-                background: '#F44336',
+                background: '#4CAF50',
               },
             },
           }}

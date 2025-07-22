@@ -4,113 +4,107 @@ import Link from 'next/link';
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 text-white relative overflow-hidden">
-      {/* 배경 이미지 - FPS 게임 관련 이미지 */}
-      <div className="absolute inset-0 opacity-40 sm:opacity-30">
-        <Image
-          src="/images/fps-background.jpg"
-          alt="FPS 게임 배경"
-          fill
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-      </div>
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+      {/* 배경 패턴 */}
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyMjIiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItSDJ2LTJoMzR6bTAgMHYySDJ2LTJoMzR6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
       
-      {/* 모바일에서 더 강한 블러 효과 */}
-      <div className="absolute inset-0 backdrop-blur-sm sm:backdrop-blur-none"></div>
+      {/* 그라디언트 오버레이 */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900"></div>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-70"></div>
+      {/* 애니메이션 배경 요소 */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
       
-      <div className="container mx-auto px-4 relative z-10 py-16 md:py-24 mt-16 sm:mt-20 md:mt-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="text-center md:text-left pt-8 md:pt-0">
-            <div className="inline-block bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <span className="text-primary font-medium">네이버 대표 FPS 장비 카페</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-primary">EM베스트</span>와<br />
-              함께 성장하세요
-            </h1>
-            
-            <p className="text-xl text-gray-300 mb-8 max-w-lg">
-              14만 게이머들에게 당신의 제품을 알리고 매출 상승을 경험하세요
-            </p>
-            
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              <a 
-                href="https://cafe.naver.com/embestc" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-primary flex items-center justify-center py-3 px-6 rounded-lg transition-all hover:scale-105"
-              >
-                카페 방문하기
-              </a>
-              <Link 
-                href="#contact" 
-                className="btn-secondary py-3 px-6 rounded-lg transition-all hover:scale-105"
-              >
-                입점 문의
-              </Link>
+      <div className="container mx-auto px-4 relative z-10 py-16 md:py-24">
+        <div className="max-w-6xl mx-auto">
+          {/* 상단 배지 */}
+          <div className="text-center mb-8 animate-fade-in">
+            <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-6 py-3 rounded-full backdrop-blur-sm">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-primary font-medium">14.7만 게이머가 선택한 No.1 FPS 커뮤니티</span>
             </div>
           </div>
           
-          <div className="relative mt-8 md:mt-0">
-            <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary/30 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-blue-500/30 rounded-full blur-3xl"></div>
+          {/* 메인 타이틀 */}
+          <div className="text-center mb-12 animate-fade-in delay-100">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              당신의 제품을<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+                14.7만 타겟 고객
+              </span>에게<br />
+              직접 전달하세요
+            </h1>
             
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/10 relative z-10">
-              <div className="flex justify-center mb-8">
-                <Image 
-                  src="/images/embest-logo.png" 
-                  alt="EM베스트 로고" 
-                  width={180} 
-                  height={60}
-                  className="h-auto invert"
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 gap-6">
-                <div className="flex items-center p-4 rounded-xl bg-gradient-to-r from-black/30 to-black/10 backdrop-blur-sm hover:from-black/40 hover:to-black/20 transition-all">
-                  <div className="bg-primary rounded-full p-3 mr-5 flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-2xl">14.7만+</p>
-                    <p className="text-gray-300">활성 카페 회원</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center p-4 rounded-xl bg-gradient-to-r from-black/30 to-black/10 backdrop-blur-sm hover:from-black/40 hover:to-black/20 transition-all">
-                  <div className="bg-primary rounded-full p-3 mr-5 flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-2xl">월 150만+</p>
-                    <p className="text-gray-300">월간 페이지 뷰</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center p-4 rounded-xl bg-gradient-to-r from-black/30 to-black/10 backdrop-blur-sm hover:from-black/40 hover:to-black/20 transition-all">
-                  <div className="bg-primary rounded-full p-3 mr-5 flex-shrink-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-white font-bold text-2xl">평균 20%+</p>
-                    <p className="text-gray-300">매출 상승률</p>
-                  </div>
-                </div>
-              </div>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              EM베스트는 FPS 게이밍 기어에 관심있는 고객들이 모인<br className="hidden md:block" />
+              국내 최대 규모의 전문 커뮤니티입니다
+            </p>
+          </div>
+          
+          {/* 핵심 지표 */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 animate-fade-in delay-200">
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+              <div className="text-3xl font-bold text-primary mb-2">14.7만+</div>
+              <div className="text-gray-400">활성 회원</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+              <div className="text-3xl font-bold text-primary mb-2">150만+</div>
+              <div className="text-gray-400">월간 페이지뷰</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+              <div className="text-3xl font-bold text-primary mb-2">95%</div>
+              <div className="text-gray-400">타겟 정확도</div>
+            </div>
+            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+              <div className="text-3xl font-bold text-primary mb-2">8-10%</div>
+              <div className="text-gray-400">평균 전환율</div>
+            </div>
+          </div>
+          
+          {/* CTA 버튼 */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-300">
+            <Link 
+              href="#pricing" 
+              className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-gradient-to-r from-primary to-primary/80 rounded-full overflow-hidden shadow-xl hover:shadow-primary/25 transition-all hover:scale-105"
+            >
+              <span className="relative z-10">입점 패키지 보기</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </Link>
+            
+            <a 
+              href="https://cafe.naver.com/embestc" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white border-2 border-white/20 rounded-full hover:bg-white/10 transition-all hover:scale-105"
+            >
+              카페 둘러보기
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+          
+          {/* 하단 신뢰 지표 */}
+          <div className="mt-16 text-center animate-fade-in delay-400">
+            <p className="text-gray-400 mb-4">신뢰할 수 있는 파트너</p>
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 opacity-60">
+              <div className="text-sm text-gray-300">네이버 공식 카페</div>
+              <div className="w-1 h-4 bg-gray-600 hidden sm:block"></div>
+              <div className="text-sm text-gray-300">최적화 2+ 블로그</div>
+              <div className="w-1 h-4 bg-gray-600 hidden sm:block"></div>
+              <div className="text-sm text-gray-300">33개 파트너사</div>
+              <div className="w-1 h-4 bg-gray-600 hidden sm:block"></div>
+              <div className="text-sm text-gray-300">10년+ 운영</div>
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* 스크롤 인디케이터 */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
     </section>
   );

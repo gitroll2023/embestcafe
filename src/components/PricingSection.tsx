@@ -1,167 +1,379 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 
-const PricingSection = () => {
+type FormPlan = 'standard' | 'premium';
+
+interface PricingSectionProps {
+  onPlanSelect?: (plan: FormPlan) => void;
+}
+
+const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
   const plans = [
-    {
-      name: '베이직',
-      price: '10만원',
-      description: '최소 3개월부터 진행 가능',
-      features: [
-        '카페 공식 입점사 등록 및 입점배너 등록(사이트 하이퍼링크)',
-        '카페 전용게시판',
-        '체험단 모집 공고 지원',
-      ],
-      notIncluded: [
-        '메인 긴 배너 노출',
-        '유튜브/인스타/블로그/카페 홍보',
-        '카페 상단 타이틀이미지 로고등록',
-        '블로그 직접 광고글 등록',
-      ],
-      recommended: false,
-      buttonText: '문의하기',
-    },
     {
       name: '스탠다드',
       price: '20만원',
-      description: '최소 3개월부터 진행 가능',
+      originalPrice: '30만원',
+      discount: '33%',
+      threeMonthPrice: '60만원',
+      threeMonthOriginalPrice: '90만원',
+      yearlyPrice: '240만원',
+      yearlyOriginalPrice: '360만원',
+      description: '기본적인 카페 마케팅을 원하는 업체',
       features: [
-        '베이직 패키지 모든 혜택',
-        '메인 긴 배너 2주 노출(변경불가)',
-        '체험단 모집 공고 지원',
-        '카페담당 리뷰어에게 물품 전달시, 유튜브/인스타/블로그/카페에 영상 및 홍보 배포',
+        {
+          title: '카페 마케팅',
+          items: [
+            '전용 게시판 개설',
+            '입점 소형배너 등록',
+            '체험단 모집 공고 지원',
+            '메인 긴 배너 노출 (월 1회 변경)'
+          ]
+        }
       ],
-      notIncluded: [
-        '카페 상단 타이틀이미지 로고등록',
-        '블로그 직접 광고글 등록',
-        '메인 배너 월간 노출',
-      ],
-      recommended: true,
-      buttonText: '문의하기',
+      recommended: false,
+      buttonText: '스탠다드 선택하기',
     },
     {
       name: '프리미엄',
       price: '30만원',
-      description: '최소 3개월부터 진행 가능',
+      originalPrice: '40만원',
+      discount: '25%',
+      threeMonthPrice: '90만원',
+      threeMonthOriginalPrice: '120만원',
+      yearlyPrice: '360만원',
+      yearlyOriginalPrice: '480만원',
+      description: '적극적인 브랜드 노출 + 블로그 마케팅을 원하는 업체',
       features: [
-        '스탠다드 패키지 모든 혜택',
-        '메인 긴 배너 월간 노출(변경 1회 무료)',
-        '체험단 모집 공고 지원',
-        '카페 상단에 타이틀이미지에 로고등록',
-        '블로그에 직접적인 광고글 1회 등록(최적2+ 블로그라서 직접적 광고글 노출해도 노출잘됨)',
+        {
+          title: '카페 마케팅',
+          items: [
+            '전용 게시판 개설',
+            '입점 소형배너 등록',
+            '체험단 모집 공고 지원',
+            '카페 상단 타이틀 로고 등록',
+            '메인 긴 배너 노출 (주 1회 변경)',
+            'EM베스트 최적화 블로그 월 2회 포스팅'
+          ]
+        }
       ],
-      notIncluded: [],
-      recommended: false,
-      buttonText: '문의하기',
+      recommended: true,
+      buttonText: '프리미엄 선택하기',
     },
   ];
 
-  return (
-    <section id="pricing" className="container-custom bg-gray-50">
-      <h2 className="section-title">
-        <span className="text-primary">요금제</span> 안내
-      </h2>
-      <p className="section-subtitle">
-        귀사의 마케팅 목표와 예산에 맞는 최적의 패키지를 선택하세요
-      </p>
+  const additionalOptions = [
+    {
+      title: '분기별 콘텐츠 마케팅',
+      description: '3개월마다 1회 제공되는 멀티채널 마케팅',
+      icon: '🎬',
+      options: [
+        {
+          name: '물품 증정',
+          price: '10만원/분기',
+          description: '리뷰 후 제품을 리뷰어에게 증정'
+        },
+        {
+          name: '물품 대여',
+          price: '30만원/분기',
+          description: '리뷰 완료 후 제품 반환'
+        }
+      ],
+      includes: [
+        '유튜브 영상 제작 (1.12만+ 구독자)',
+        '인스타그램 릴스/포스트 (6천+ 팔로워)',
+        '네이버 블로그 상세 리뷰',
+        '카페 내 공식 리뷰 게시'
+      ]
+    },
+    {
+      title: '월별 블로그 마케팅',
+      description: '검색 노출을 위한 최적화 블로그 포스팅',
+      icon: '📝',
+      options: [
+        {
+          name: '월 2회',
+          price: '10만원/월',
+          description: '매월 2회 블로그 포스팅'
+        },
+        {
+          name: '월 4회',
+          price: '18만원/월',
+          description: '매월 4회 블로그 포스팅'
+        }
+      ],
+      includes: [
+        '네이버 최적화 2+ 블로그',
+        'SEO 최적화 키워드 적용',
+        '상세한 제품 리뷰 및 정보',
+        '장기적인 검색 노출 효과',
+        '프리미엄 플랜은 기본 2회 포함'
+      ]
+    }
+  ];
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-        {plans.map((plan, index) => (
-          <div 
-            key={index} 
-            className={`bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2 ${
-              plan.recommended ? 'border-2 border-primary relative' : ''
-            }`}
-          >
-            {plan.recommended && (
-              <div className="bg-primary text-white py-1 px-4 text-sm font-bold absolute top-0 right-0 rounded-bl-lg">
-                추천
+  return (
+    <section id="pricing" className="container-custom">
+      <div className="max-w-7xl mx-auto">
+        {/* 섹션 헤더 */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            합리적인 <span className="text-primary">가격</span>으로<br />
+            최대의 효과를 경험하세요
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            귀사의 마케팅 목표에 맞는 패키지를 선택하고, 필요한 옵션을 추가하세요
+          </p>
+        </div>
+
+        {/* 얼리버드 안내 배너 */}
+        <div className="mb-12 bg-gradient-to-r from-red-500 to-orange-500 rounded-3xl p-8 text-white text-center shadow-xl">
+          <div className="flex items-center justify-center mb-4">
+            <span className="text-3xl mr-3">🔥</span>
+            <h3 className="text-2xl font-bold">얼리버드 특별 할인 진행 중!</h3>
+            <span className="text-3xl ml-3">🔥</span>
+          </div>
+          <p className="text-xl mb-2">지금 신청하면 <span className="font-bold text-yellow-300">최대 33% 할인</span>된 가격으로 이용 가능</p>
+          <p className="text-sm opacity-90">2025년 9월 1일 이후 정가 적용 예정</p>
+        </div>
+
+        {/* 기본 플랜 */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-center mb-8">기본 입점 패키지</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {plans.map((plan, index) => (
+              <div 
+                key={index} 
+                className={`bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all hover:scale-105 ${
+                  plan.recommended ? 'ring-4 ring-primary ring-opacity-50' : ''
+                }`}
+              >
+                {plan.recommended && (
+                  <div className="bg-primary text-white text-center py-2 text-sm font-bold">
+                    🌟 가장 인기 있는 선택
+                  </div>
+                )}
+                
+                <div className="p-8">
+                  <div className="absolute top-6 right-6 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                    {plan.discount} 할인
+                  </div>
+                  <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
+                  {plan.name === '프리미엄' && (
+                    <div className="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold mb-3">
+                      📝 월 2회 블로그 포스팅 포함
+                    </div>
+                  )}
+                  <p className="text-gray-600 mb-6">{plan.description}</p>
+                  
+                  <div className="mb-6">
+                    <div className="mb-3">
+                      <span className="text-2xl text-gray-400 line-through">{plan.originalPrice}</span>
+                      <span className="text-sm text-gray-400 ml-2">정가</span>
+                    </div>
+                    <div className="flex items-baseline mb-2">
+                      <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                      <span className="text-gray-500 ml-2">/ 월</span>
+                      <span className="ml-3 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">얼리버드</span>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-1 mt-4 p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between">
+                        <span>3개월:</span>
+                        <span>
+                          <span className="line-through text-gray-400">{plan.threeMonthOriginalPrice}</span>
+                          <span className="ml-2 font-semibold">{plan.threeMonthPrice}</span>
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>12개월:</span>
+                        <span>
+                          <span className="line-through text-gray-400">{plan.yearlyOriginalPrice}</span>
+                          <span className="ml-2 font-semibold">{plan.yearlyPrice}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx}>
+                        <h4 className="font-semibold text-gray-900 mb-2">{feature.title}</h4>
+                        <ul className="space-y-2">
+                          {feature.items.map((item, itemIdx) => (
+                            <li key={itemIdx} className="flex items-start">
+                              <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <button
+                    onClick={() => {
+                      if (onPlanSelect) {
+                        onPlanSelect(plan.name === '스탠다드' ? 'standard' : 'premium');
+                      }
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        const rect = contactSection.getBoundingClientRect();
+                        const absoluteTop = window.pageYOffset + rect.top;
+                        window.scrollTo({
+                          top: absoluteTop - 100,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }}
+                    className={`block w-full text-center py-4 px-6 rounded-xl font-bold transition-all ${
+                      plan.recommended 
+                        ? 'bg-primary text-white hover:bg-primary/90 shadow-lg' 
+                        : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </button>
+                </div>
               </div>
-            )}
-            
-            <div className="p-6">
-              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-              <div className="flex items-baseline mb-4">
-                <span className="text-3xl font-bold">{plan.price}</span>
-                <span className="text-gray-500 ml-2">/ 월</span>
-              </div>
-              <p className="text-gray-600 mb-6">{plan.description}</p>
-              
-              <div className="mb-6">
-                <p className="font-medium mb-2">포함 사항:</p>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              {plan.notIncluded.length > 0 && (
+            ))}
+          </div>
+          <div className="text-center mt-6 text-gray-600">
+            <p>※ 모든 요금제는 최소 3개월 단위 계약, VAT 별도</p>
+          </div>
+        </div>
+
+        {/* 추가 옵션 */}
+        <div className="bg-gray-50 rounded-3xl p-8 md:p-12">
+          <h3 className="text-2xl font-bold text-center mb-8">추가 마케팅 옵션</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {additionalOptions.map((option, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="flex items-center mb-4">
+                  <span className="text-4xl mr-4">{option.icon}</span>
+                  <div>
+                    <h4 className="text-xl font-bold">{option.title}</h4>
+                    <p className="text-gray-600">{option.description}</p>
+                  </div>
+                </div>
+                
                 <div className="mb-6">
-                  <p className="font-medium mb-2">미포함 사항:</p>
+                  <h5 className="font-semibold text-gray-900 mb-3">가격 옵션</h5>
+                  <div className="space-y-3">
+                    {option.options.map((opt, idx) => (
+                      <div key={idx} className="bg-gray-50 rounded-lg p-4">
+                        <div className="flex justify-between items-center mb-1">
+                          <span className="font-medium">{opt.name}</span>
+                          <span className="font-bold text-primary">{opt.price}</span>
+                        </div>
+                        <p className="text-sm text-gray-600">{opt.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h5 className="font-semibold text-gray-900 mb-3">포함 내용</h5>
                   <ul className="space-y-2">
-                    {plan.notIncluded.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-gray-500">
-                        <svg className="h-5 w-5 text-gray-400 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    {option.includes.map((item, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <svg className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
                         </svg>
-                        <span>{feature}</span>
+                        <span className="text-gray-700 text-sm">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
-              
-              <Link 
-                href="#contact" 
-                className={`w-full text-center py-3 px-6 rounded-lg font-bold transition-colors ${
-                  plan.recommended 
-                    ? 'bg-primary text-white hover:bg-opacity-90' 
-                    : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
-                }`}
-              >
-                {plan.buttonText}
-              </Link>
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      
-      <div className="mt-12 text-center">
-        <p className="text-gray-600 mb-4">※ 최소 3개월부터 계약 가능합니다.</p>
-        
-        <div className="max-w-3xl mx-auto mt-8 bg-gray-100 p-6 rounded-xl shadow-sm">
-          <h3 className="text-xl font-bold mb-4 text-gray-800">당신이 EM베스트를 선택해야하는 이유?</h3>
-          <div className="text-left">
-            <p className="mb-3 text-gray-700">
-              <span className="font-semibold">도대체 누가 월 10 ~ 30만원으로 마케팅을 해줄까요?</span> 
-              이런 합리적인 가격은 다른 곳에서는 절대 볼 수 없었을 것입니다.
-            </p>
-            <p className="mb-3 text-gray-700">
-              일반 마케팅 대행사에만 맡겨도 <span className="font-semibold text-primary">최소 몇백만원</span>의 비용이 발생합니다. 
-              그에 비해 EM베스트는 합리적인 가격으로 타겟 고객층에 직접 접근할 수 있는 기회를 제공합니다.
-            </p>
-            <p className="mb-5 text-gray-700">
-              <span className="font-semibold">FPS 장비를 판매하시는 분들</span>이라면, 
-              EM베스트와의 협업이 귀사의 마케팅 효율성과 ROI를 크게 향상시킬 것입니다.
-            </p>
-            
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-3 rounded">
-              <p className="mb-2 text-gray-800">
-                <span className="font-semibold">바이럴 마케팅</span>으로 인해 카페 이곳저곳에서 <span className="text-red-600 font-semibold">강제퇴출 당하는 사례가 많습니다</span>. 
-                더 비싼 돈을 주고 대행사에 맡겼더니 그런 상황이 생기셨다니, 정말 안타깝습니다.
-              </p>
-              <p className="text-gray-800 font-medium">
-                네이버 대표카페 <span className="text-primary font-bold">"EM베스트"</span>에서 
-                더 많은 혜택을 누리십시오.
-              </p>
+        </div>
+
+        {/* 가격 비교 */}
+        <div className="mt-20 bg-gradient-to-r from-primary/10 to-blue-100 rounded-3xl p-8 md:p-12">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-bold text-center mb-8">
+              투자 대비 효과 분석
+            </h3>
+            <div className="bg-white rounded-2xl shadow-lg overflow-x-auto">
+              <table className="w-full min-w-[500px]">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-4 text-left">구분</th>
+                    <th className="px-6 py-4 text-center">일반 대행사</th>
+                    <th className="px-6 py-4 text-center">EM베스트</th>
+                    <th className="px-6 py-4 text-center">절감액</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t">
+                    <td className="px-6 py-4">월 기본 비용</td>
+                    <td className="px-6 py-4 text-center">200-300만원</td>
+                    <td className="px-6 py-4 text-center">
+                      <span className="line-through text-gray-400">30-40만원</span>
+                      <span className="text-primary font-bold ml-2">20-30만원</span>
+                      <span className="text-xs text-red-500 ml-1">(얼리버드)</span>
+                    </td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">90% 절감</td>
+                  </tr>
+                  <tr className="border-t">
+                    <td className="px-6 py-4">콘텐츠 제작</td>
+                    <td className="px-6 py-4 text-center">회당 50-100만원</td>
+                    <td className="px-6 py-4 text-center text-primary font-bold">분기 10-30만원</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">80% 절감</td>
+                  </tr>
+                  <tr className="border-t">
+                    <td className="px-6 py-4">타겟 정확도</td>
+                    <td className="px-6 py-4 text-center">낮음 (20-30%)</td>
+                    <td className="px-6 py-4 text-center text-primary font-bold">높음 (95%+)</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">3배 향상</td>
+                  </tr>
+                  <tr className="border-t bg-gray-50">
+                    <td className="px-6 py-4 font-bold">연간 총 비용</td>
+                    <td className="px-6 py-4 text-center">3,000만원+</td>
+                    <td className="px-6 py-4 text-center text-primary font-bold">300-500만원</td>
+                    <td className="px-6 py-4 text-center text-green-600 font-bold">2,500만원+ 절감</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <p className="text-center mt-6 text-gray-600">
+              * 평균적인 비용 기준이며, 실제 비용은 계약 조건에 따라 달라질 수 있습니다
+            </p>
           </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold mb-4">
+            지금 바로 시작하세요
+          </h3>
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            EM베스트와 함께라면 적은 비용으로도 효과적인 마케팅이 가능합니다.<br />
+            귀사에 맞는 패키지를 선택하고 문의해주세요.
+          </p>
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                const rect = contactSection.getBoundingClientRect();
+                const absoluteTop = window.pageYOffset + rect.top;
+                window.scrollTo({
+                  top: absoluteTop - 100,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary rounded-full hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
+          >
+            무료 상담 신청하기
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

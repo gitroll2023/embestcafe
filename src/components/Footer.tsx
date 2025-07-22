@@ -21,9 +21,29 @@ const Footer = () => {
     setModalContent(null);
   };
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const href = e.currentTarget.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const element = document.querySelector(href);
+      if (element) {
+        const headerOffset = 150; // 얼리버드 배너(80px) + 헤더(약 70px)
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
+    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
+       
+
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           <div className="md:col-span-1">
             <div className="mb-4">
@@ -72,29 +92,29 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">서비스</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#intro" className="text-gray-400 hover:text-white transition-colors">
-                  카페 소개
-                </Link>
+                <a href="#intro" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  EM베스트 소개
+                </a>
               </li>
               <li>
-                <Link href="#benefits" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#benefits" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
                   입점 혜택
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#cases" className="text-gray-400 hover:text-white transition-colors">
-                  성공 사례
-                </Link>
+                <a href="#cases" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  체험단 효과
+                </a>
               </li>
               <li>
-                <Link href="#pricing" className="text-gray-400 hover:text-white transition-colors">
-                  요금제 안내
-                </Link>
+                <a href="#pricing" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  가격 안내
+                </a>
               </li>
               <li>
-                <Link href="#faq" className="text-gray-400 hover:text-white transition-colors">
-                  자주 묻는 질문
-                </Link>
+                <a href="#partners" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  파트너사
+                </a>
               </li>
             </ul>
           </div>
@@ -103,14 +123,24 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">고객지원</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#contact" className="text-gray-400 hover:text-white transition-colors">
-                  문의하기
-                </Link>
+                <a href="#contact" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  견적 문의
+                </a>
               </li>
               <li>
+                <a href="#faq" onClick={handleNavClick} className="text-gray-400 hover:text-white transition-colors cursor-pointer">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="https://cafe.naver.com/embestc" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                  카페 방문하기
+                </a>
+              </li>
+              <li className="pt-2">
                 <button 
                   onClick={() => openModal('termsOfService')} 
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  className="text-gray-400 hover:text-white transition-colors text-left text-sm"
                 >
                   이용약관
                 </button>
@@ -118,37 +148,59 @@ const Footer = () => {
               <li>
                 <button 
                   onClick={() => openModal('privacyPolicy')} 
-                  className="text-gray-400 hover:text-white transition-colors text-left"
+                  className="text-gray-400 hover:text-white transition-colors text-left text-sm"
                 >
                   개인정보처리방침
                 </button>
               </li>
-        
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-bold mb-4">연락처</h3>
-            <ul className="space-y-2 text-gray-400">
-          
-              <li className="flex items-center">
-                <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <ul className="space-y-3 text-gray-400">
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <span>qkrwodud30@naver.com</span>
+                <div>
+                  <p className="font-medium text-white">이메일 문의</p>
+                  <a href="mailto:qkrwodud30@naver.com" className="hover:text-white">
+                    qkrwodud30@naver.com
+                  </a>
+                </div>
               </li>
-           
-    
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <p className="font-medium text-white">상담 시간</p>
+                  <p>평일 10:00 - 18:00</p>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <svg className="w-5 h-5 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <div>
+                  <p className="font-medium text-white">사업자 정보</p>
+                  <p>사업자등록번호: 612-14-92940</p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {currentYear} EM베스트. All rights reserved. 사업자등록번호: 612-14-92940<br />
-              웹사이트 제작: <a href="https://trickcontents.co.kr/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">트릭콘텐츠</a>
-            </p>
+            <div className="text-gray-500 text-sm mb-4 md:mb-0">
+              <p>&copy; {currentYear} EM베스트. All rights reserved.</p>
+              <p className="mt-1">
+                웹사이트 제작: <a href="https://trickcontents.co.kr/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">트릭콘텐츠</a>
+              </p>
+            </div>
             <div className="flex space-x-4">
               <button 
                 onClick={() => openModal('termsOfService')} 

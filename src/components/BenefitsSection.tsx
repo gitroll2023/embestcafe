@@ -3,144 +3,297 @@ import React from 'react';
 const BenefitsSection = () => {
   const benefits = [
     {
-      title: '통합 마케팅',
-      description: '카페, 유튜브, 블로그, 인스타그램을 통한 통합 마케팅으로 다양한 접점에서 노출',
-      icon: 'bx bx-globe',
+      title: '정확한 타겟 마케팅',
+      description: 'FPS 게이밍 기어에 관심있는 14.7만 실구매층에게 직접 도달',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      highlight: '타겟 정확도 95%'
     },
     {
-      title: '체험단 운영',
-      description: '노출빈도가 높은 블로거 및 인플루언서들을 통해 신뢰도 높은 콘텐츠 생산',
-      icon: 'bx bx-group',
-    },
-    {
-      title: '전용 게시판',
-      description: '입점업체 전용게시판을 통한 카페 노출기회 제공',
-      icon: 'bx bx-notepad',
+      title: '다채널 통합 마케팅',
+      description: '카페, 유튜브, 인스타, 블로그를 통한 시너지 효과',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+      highlight: '4개 채널 동시 운영'
     },
     {
       title: '실시간 피드백',
-      description: '실제 게이머들과 실시간 피드백 교환 가능',
-      icon: 'bx bx-chat',
+      description: '실제 사용자들의 진솔한 의견과 개선 제안 수렴',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      ),
+      highlight: '24시간 내 응답'
     },
     {
-      title: '최적 블로그 콘텐츠 노출',
-      description: '선별된 입점 업체 제품을 네이버 블로그에 소개하는 특별 콘텐츠 기회 제공',
-      icon: 'bx bx-bar-chart-alt-2',
+      title: '합리적인 비용',
+      description: '대행사 대비 70% 절감된 비용으로 높은 ROI 실현',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      highlight: '월 20만원부터'
+    },
+    {
+      title: '전문 체험단 운영',
+      description: '신뢰도 높은 리뷰어들의 전문적인 제품 분석',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      ),
+      highlight: '14.7만+ 리뷰어 풀'
     },
     {
       title: '브랜드 인지도 상승',
-      description: 'FPS 게이머들 사이에서 브랜드 인지도 및 신뢰도 상승 효과',
-      icon: 'bx bx-trending-up',
+      description: '지속적인 노출로 장기적인 브랜드 가치 구축',
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      highlight: '평균 인지도 156% ↑'
+    }
+  ];
+
+  const processSteps = [
+    {
+      step: 1,
+      title: '입점 신청',
+      description: '원하는 패키지 선택 및 신청서 제출'
     },
+    {
+      step: 2,
+      title: '상담 진행',
+      description: '담당자와 맞춤형 마케팅 전략 수립'
+    },
+    {
+      step: 3,
+      title: '계약 체결',
+      description: '계약서 작성 및 입점 준비'
+    },
+    {
+      step: 4,
+      title: '마케팅 시작',
+      description: '카페 입점 및 마케팅 활동 개시'
+    }
   ];
 
   return (
-    <section id="benefits" className="container-custom bg-gray-50">
-      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet' />
-      <h2 className="section-title">
-        <span className="text-primary">입점 혜택</span>을 확인하세요
-      </h2>
-      <p className="section-subtitle">
-        EM베스트 입점으로 얻을 수 있는 다양한 혜택과 마케팅 효과를 소개합니다
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-        {benefits.map((benefit, index) => (
-          <div key={index} className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow">
-            <div className="flex items-start mb-4">
-              <div className="bg-primary bg-opacity-10 p-3 rounded-full mr-4">
-                <i className={`${benefit.icon} text-primary text-2xl`}></i>
-              </div>
-              <h3 className="text-xl font-bold">{benefit.title}</h3>
-            </div>
-            <p className="text-gray-600">{benefit.description}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-16 bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="p-6 bg-primary text-white">
-          <h3 className="text-2xl font-bold mb-2">1년 기준 비용 비교: EM베스트 vs 일반 마케팅 대행사</h3>
-          <p>동일한 마케팅 효과를 위한 연간 비용 비교</p>
+    <section id="benefits" className="container-custom">
+      <div className="max-w-7xl mx-auto">
+        {/* 섹션 헤더 */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-primary">EM베스트</span>만의<br />
+            특별한 혜택
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            입점 파트너사에게만 제공되는 독점 혜택을 확인하세요
+          </p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="py-4 px-6 text-left">마케팅 항목</th>
-                <th className="py-4 px-6 text-left">일반 시장 시세 (연간)</th>
-                <th className="py-4 px-6 text-left">EM베스트 비용 (연간)</th>
-                <th className="py-4 px-6 text-left">연간 절감액</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-b">
-                <td className="py-4 px-6">월 유튜브 컨텐츠 (12개)</td>
-                <td className="py-4 px-6">120만원</td>
-                <td className="py-4 px-6">60만원</td>
-                <td className="py-4 px-6 text-green-600 font-medium">-60만원</td>
-              </tr>
-              <tr className="border-b">
-                <td className="py-4 px-6">최적화 블로그 홍보 (12건)</td>
-                <td className="py-4 px-6">96만원</td>
-                <td className="py-4 px-6">48만원</td>
-                <td className="py-4 px-6 text-green-600 font-medium">-48만원</td>
-              </tr>
-              <tr className="border-b">
-                <td className="py-4 px-6">인스타그램 발행 (12건)</td>
-                <td className="py-4 px-6">60만원</td>
-                <td className="py-4 px-6">30만원</td>
-                <td className="py-4 px-6 text-green-600 font-medium">-30만원</td>
-              </tr>
-              <tr className="border-b">
-                <td className="py-4 px-6">네이버 카페 제품 홍보글 (60건)</td>
-                <td className="py-4 px-6">180만원</td>
-                <td className="py-4 px-6">무료 제공</td>
-                <td className="py-4 px-6 text-green-600 font-medium">-180만원</td>
-              </tr>
-              <tr className="bg-gray-50 font-bold">
-                <td className="py-4 px-6">연간 총 비용</td>
-                <td className="py-4 px-6">456만원</td>
-                <td className="py-4 px-6">138만원</td>
-                <td className="py-4 px-6 text-green-600">-318만원 (70% 절감)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
 
-      <div className="mt-12 bg-primary bg-opacity-10 rounded-lg p-6 md:p-8">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-2/3 mb-6 md:mb-0 md:pr-8">
-            <h3 className="text-2xl font-bold mb-4">타겟 마케팅의 효과</h3>
-            <p className="mb-4">
-              일반 마케팅 채널에서는 불특정 다수에게 광고를 노출시키지만, EM베스트에서는 <strong>실제 FPS 게임을 즐기고 관련 장비에 관심이 높은 잠재 고객</strong>에게만 집중적으로 노출됩니다.
-            </p>
-            <p className="font-medium">
-              정확한 타겟팅으로 마케팅 비용 대비 효율이 최대 3배 이상 높아집니다.
-            </p>
-          </div>
-          <div className="md:w-1/3">
-            <div className="bg-white rounded-lg p-4 shadow-md">
+        {/* 주요 혜택 그리드 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {benefits.map((benefit, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1">
               <div className="flex items-center justify-between mb-4">
-                <div>
-                  <p className="text-sm text-gray-500">일반 마케팅</p>
-                  <p className="font-bold">전환율 2-3%</p>
+                <div className="bg-primary/10 text-primary p-3 rounded-full">
+                  {benefit.icon}
                 </div>
-                <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
-                  <span className="text-lg font-bold">VS</span>
+                <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">
+                  {benefit.highlight}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+              <p className="text-gray-600">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* 프로세스 */}
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-3xl p-8 md:p-12 mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12">
+            간단한 입점 프로세스
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {processSteps.map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                  {item.step}
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500">EM베스트</p>
-                  <p className="font-bold text-primary">전환율 8-10%</p>
+                <h4 className="font-bold mb-2">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.description}</p>
+                {index < processSteps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-[calc(100%-2rem)] w-8">
+                    <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 콘텐츠 마케팅 상세 설명 */}
+        <div id="content-marketing-detail" className="bg-gradient-to-br from-primary/5 to-blue-50 rounded-3xl p-8 md:p-12">
+          <div className="max-w-5xl mx-auto">
+            <h3 className="text-3xl font-bold text-center mb-8">
+              <span className="text-primary">분기별 콘텐츠 마케팅</span>이란?
+            </h3>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+              {/* 채널 영향력 */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h4 className="text-xl font-bold mb-6 flex items-center">
+                  <span className="text-2xl mr-3">📊</span>
+                  채널 영향력
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center pb-3 border-b">
+                    <span className="text-gray-600">카페 회원</span>
+                    <span className="font-bold text-2xl text-primary">14.7만+</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-3 border-b">
+                    <span className="text-gray-600">월간 페이지뷰</span>
+                    <span className="font-bold text-2xl text-primary">150만+</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-3 border-b">
+                    <span className="text-gray-600">유튜브 구독자</span>
+                    <span className="font-bold text-2xl text-primary">1.12만+</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-3 border-b">
+                    <span className="text-gray-600">인스타그램 팔로워</span>
+                    <span className="font-bold text-2xl text-primary">6천+</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">블로그 등급</span>
+                    <span className="font-bold text-2xl text-primary">최적화 2+</span>
+                  </div>
                 </div>
               </div>
-              <div className="h-4 bg-gray-200 rounded-full mb-2">
-                <div className="h-4 bg-gray-400 rounded-full" style={{ width: '30%' }}></div>
+
+              {/* 제공 프로세스 */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h4 className="text-xl font-bold mb-6 flex items-center">
+                  <span className="text-2xl mr-3">🎯</span>
+                  제공 프로세스
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex items-start">
+                    <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-4 text-sm font-bold">1</div>
+                    <div>
+                      <h5 className="font-semibold mb-1">제품 전달</h5>
+                      <p className="text-sm text-gray-600">전문 리뷰어에게 제품 전달</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-4 text-sm font-bold">2</div>
+                    <div>
+                      <h5 className="font-semibold mb-1">콘텐츠 제작</h5>
+                      <p className="text-sm text-gray-600">고품질 영상 및 이미지 제작</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-4 text-sm font-bold">3</div>
+                    <div>
+                      <h5 className="font-semibold mb-1">멀티채널 배포</h5>
+                      <p className="text-sm text-gray-600">유튜브, 인스타, 블로그, 카페 동시 업로드</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <div className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 mr-4 text-sm font-bold">4</div>
+                    <div>
+                      <h5 className="font-semibold mb-1">피드백 수집</h5>
+                      <p className="text-sm text-gray-600">커뮤니티 반응 및 의견 정리</p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="h-4 bg-gray-200 rounded-full">
-                <div className="h-4 bg-primary rounded-full" style={{ width: '90%' }}></div>
+            </div>
+
+            {/* 가격 옵션 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white rounded-2xl p-8 border-2 border-orange-200 shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                  <h5 className="text-xl font-bold">물품 증정 옵션</h5>
+                  <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">인기</span>
+                </div>
+                <div className="text-3xl font-bold text-primary mb-4">10만원<span className="text-lg text-gray-500">/분기</span></div>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    리뷰 후 제품을 리뷰어에게 증정
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    리뷰어의 진솔한 장기 사용 후기
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    제품에 대한 애착도 높은 리뷰
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-orange-50 rounded-lg">
+                  <p className="text-sm text-orange-800">
+                    <strong>💡 추천:</strong> 50만원 이하 제품
+                  </p>
+                </div>
               </div>
+
+              <div className="bg-white rounded-2xl p-8 border-2 border-blue-200 shadow-lg">
+                <div className="flex items-center justify-between mb-4">
+                  <h5 className="text-xl font-bold">물품 대여 옵션</h5>
+                  <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">고가제품</span>
+                </div>
+                <div className="text-3xl font-bold text-primary mb-4">30만원<span className="text-lg text-gray-500">/분기</span></div>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    리뷰 완료 후 제품 반환
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    고가 제품도 부담 없이 리뷰 가능
+                  </li>
+                  <li className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    전문적이고 객관적인 리뷰
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    <strong>💡 추천:</strong> 50만원 이상 고가 제품
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 text-center">
+              <p className="text-yellow-800">
+                <strong>📢 안내:</strong> 3개월마다 1회 제공되며, 동일 분기 내 추가 제작 시 물품 증정 15만원, 물품 대여 30만원 (VAT 별도)
+              </p>
             </div>
           </div>
         </div>
