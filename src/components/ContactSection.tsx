@@ -285,7 +285,7 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
             </h3>
             
             <p className="text-xl md:text-2xl mb-8 opacity-95">
-              맞습니다. 정상가의 <span className="font-bold text-yellow-300">70% 할인된</span> 가격입니다
+              맞습니다. 일반 대행사 대비 <span className="font-bold text-yellow-300">90% 절감된</span> 가격입니다
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8">
