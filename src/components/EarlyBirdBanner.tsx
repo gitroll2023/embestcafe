@@ -12,7 +12,7 @@ const EarlyBirdBanner = () => {
   });
   // 남은 시간 계산 함수
   const calculateTimeLeft = () => {
-    const deadline = new Date('2025-09-01T23:59:59');
+    const deadline = new Date('2025-10-01T23:59:59');
     const now = new Date();
     const difference = deadline.getTime() - now.getTime();
     

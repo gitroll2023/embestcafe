@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-type FormPlan = 'standard' | 'premium';
+type FormPlan = 'premium';
 
 interface PricingSectionProps {
   onPlanSelect?: (plan: FormPlan) => void;
@@ -12,31 +12,7 @@ interface PricingSectionProps {
 const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
   const plans = [
     {
-      name: '스탠다드',
-      price: '20만원',
-      originalPrice: '30만원',
-      discount: '33%',
-      threeMonthPrice: '60만원',
-      threeMonthOriginalPrice: '90만원',
-      yearlyPrice: '240만원',
-      yearlyOriginalPrice: '360만원',
-      description: '기본적인 카페 마케팅을 원하는 업체',
-      features: [
-        {
-          title: '카페 마케팅',
-          items: [
-            '전용 게시판 개설',
-            '입점 소형배너 등록',
-            '체험단 모집 공고 지원',
-            '메인 긴 배너 노출 (월 1회 변경)'
-          ]
-        }
-      ],
-      recommended: false,
-      buttonText: '스탠다드 선택하기',
-    },
-    {
-      name: '프리미엄',
+      name: '통합 입점 패키지',
       price: '30만원',
       originalPrice: '40만원',
       discount: '25%',
@@ -44,7 +20,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
       threeMonthOriginalPrice: '120만원',
       yearlyPrice: '360만원',
       yearlyOriginalPrice: '480만원',
-      description: '적극적인 브랜드 노출 + 블로그 마케팅을 원하는 업체',
+      description: '카페 마케팅 + 월 1건 콘텐츠(유튜브+블로그+인스타) 포함',
       features: [
         {
           title: '카페 마케팅',
@@ -53,62 +29,44 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             '입점 소형배너 등록',
             '체험단 모집 공고 지원',
             '카페 상단 타이틀 로고 등록',
-            '메인 긴 배너 노출 (주 1회 변경)',
-            'EM베스트 최적화 블로그 월 2회 포스팅'
+            '메인 긴 배너 노출 (주 1회 변경)'
+          ]
+        },
+        {
+          title: '월별 콘텐츠 제작 (기본 포함)',
+          items: [
+            '유튜브 영상 제작 - 월 1건',
+            '네이버 블로그 포스팅 - 월 1건',
+            '인스타그램 포스트 - 월 1건',
+            '제공 물품에 대한 전문 리뷰 콘텐츠',
+            '검색 최적화 및 장기 노출 효과'
           ]
         }
       ],
       recommended: true,
-      buttonText: '프리미엄 선택하기',
+      buttonText: '통합 패키지 신청하기',
     },
   ];
 
   const additionalOptions = [
     {
-      title: '분기별 콘텐츠 마케팅',
-      description: '3개월마다 1회 제공되는 멀티채널 마케팅',
+      title: '추가 콘텐츠 제작 (물품 제공 시)',
+      description: '기본 제공 외 추가 유튜브+블로그+인스타그램 세트',
       icon: '🎬',
       options: [
         {
-          name: '물품 증정',
-          price: '10만원/분기',
-          description: '리뷰 후 제품을 리뷰어에게 증정'
-        },
-        {
-          name: '물품 대여',
-          price: '30만원/분기',
-          description: '리뷰 완료 후 제품 반환'
+          name: '유튜브+블로그+인스타 세트',
+          price: '15만원/세트',
+          description: '유튜브 1건 + 블로그 1건 + 인스타 1건'
         }
       ],
       includes: [
         '유튜브 영상 제작 (1.12만+ 구독자)',
-        '인스타그램 릴스/포스트 (7.1천+ 팔로워)',
-        '네이버 블로그 상세 리뷰',
-        '카페 내 공식 리뷰 게시'
-      ]
-    },
-    {
-      title: '월별 블로그 마케팅',
-      description: '검색 노출을 위한 최적화 블로그 포스팅',
-      icon: '📝',
-      options: [
-        {
-          name: '월 2회',
-          price: '10만원/월',
-          description: '매월 2회 블로그 포스팅'
-        },
-        {
-          name: '월 4회',
-          price: '18만원/월',
-          description: '매월 4회 블로그 포스팅'
-        }
-      ],
-      includes: [
-        '네이버 최적화 2+ 블로그',
-        'SEO 최적화 키워드 적용',
-        '상세한 제품 리뷰 및 정보',
-        '장기적인 검색 노출 효과',
-        '프리미엄 플랜은 기본 2회 포함'
+        '네이버 블로그 포스팅',
+        '인스타그램 포스트 (7.1천+ 팔로워)',
+        '동일 제품에 대한 통합 리뷰',
+        'SEO 최적화 및 검색 노출',
+        '※ 물품 제공 필수'
       ]
     }
   ];
@@ -134,14 +92,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             <h3 className="text-2xl font-bold">얼리버드 특별 할인 진행 중!</h3>
             <span className="text-3xl ml-3">🔥</span>
           </div>
-          <p className="text-xl mb-2">지금 신청하면 <span className="font-bold text-yellow-300">최대 33% 할인</span>된 가격으로 이용 가능</p>
-          <p className="text-sm opacity-90">2025년 9월 1일 이후 정가 적용 예정</p>
+          <p className="text-xl mb-2">지금 신청하면 <span className="font-bold text-yellow-300">최대 25% 할인</span>된 가격으로 이용 가능</p>
+          <p className="text-sm opacity-90">2025년 10월 1일 이후 정가 적용 예정</p>
         </div>
 
         {/* 기본 플랜 */}
         <div className="mb-20">
-          <h3 className="text-2xl font-bold text-center mb-8">기본 입점 패키지</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <h3 className="text-2xl font-bold text-center mb-8">통합 마케팅 패키지</h3>
+          <div className="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
             {plans.map((plan, index) => (
               <div 
                 key={index} 
@@ -160,9 +118,17 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
                     {plan.discount} 할인
                   </div>
                   <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
-                  {plan.name === '프리미엄' && (
-                    <div className="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold mb-3">
-                      📝 월 2회 블로그 포스팅 포함
+                  {plan.name === '통합 입점 패키지' && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <div className="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        🎬 유튜브 1건
+                      </div>
+                      <div className="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        📝 블로그 1건
+                      </div>
+                      <div className="inline-flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        📸 인스타 1건
+                      </div>
                     </div>
                   )}
                   <p className="text-gray-600 mb-6">{plan.description}</p>
@@ -175,7 +141,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
                     <div className="flex items-baseline mb-2">
                       <span className="text-5xl font-bold text-primary">{plan.price}</span>
                       <span className="text-gray-500 ml-2">/ 월</span>
-                      <span className="ml-3 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">얼리버드</span>
+                      <span className="ml-3 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">얼리버드 (~10/1)</span>
                     </div>
                     <div className="text-sm text-gray-600 space-y-1 mt-4 p-3 bg-gray-50 rounded-lg">
                       <div className="flex justify-between">
@@ -216,7 +182,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
                   <button
                     onClick={() => {
                       if (onPlanSelect) {
-                        onPlanSelect(plan.name === '스탠다드' ? 'standard' : 'premium');
+                        onPlanSelect('premium');
                       }
                       const contactSection = document.getElementById('contact');
                       if (contactSection) {
@@ -241,13 +207,16 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             ))}
           </div>
           <div className="text-center mt-6 text-gray-600">
-            <p>※ 모든 요금제는 최소 3개월 단위 계약, VAT 별도</p>
+            <p className="font-semibold mb-2">※ 모든 요금제는 최소 3개월 단위 계약, VAT 별도</p>
+            <p className="text-sm">※ 기본 제공되는 유튜브/블로그/인스타는 업체가 제공하는 물품에 대한 리뷰 콘텐츠입니다</p>
+            <p className="text-sm">※ 추가 콘텐츠는 물품 제공 시에만 가능하며 세트당 15만원입니다</p>
           </div>
         </div>
 
         {/* 추가 옵션 */}
         <div className="bg-gray-50 rounded-3xl p-8 md:p-12">
-          <h3 className="text-2xl font-bold text-center mb-8">추가 마케팅 옵션</h3>
+          <h3 className="text-2xl font-bold text-center mb-4">추가 콘텐츠 옵션</h3>
+          <p className="text-center text-gray-600 mb-8">기본 제공 콘텐츠 외에 추가로 필요한 경우 선택하세요</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {additionalOptions.map((option, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg p-8">

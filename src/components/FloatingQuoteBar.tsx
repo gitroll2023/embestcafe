@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 
-type FormPlan = 'standard' | 'premium';
+type FormPlan = 'premium';
 type ContractDuration = 3 | 6 | 12;
 type ContentMarketingType = null | 'gift' | 'rental';
 type BlogMarketingType = null | 'twice' | 'four';
@@ -52,43 +52,26 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
   };
 
   const calculateTotalPrice = () => {
-    const basePrice = selectedPlan === 'standard' ? 20 : 30;
+    const basePrice = 30;
     let contentPrice = 0;
-    let blogPrice = 0;
     
-    if (contentMarketingType) {
-      if (marketingPeriod === 'quarterly') {
-        const pricePerQuarter = contentMarketingType === 'gift' ? 10 : 30;
-        contentPrice = pricePerQuarter * Math.floor(selectedDuration / 3);
-      } else {
-        const pricePerMonth = contentMarketingType === 'gift' ? 30 : 90;
-        contentPrice = pricePerMonth * selectedDuration;
-      }
+    if (contentMarketingType === 'gift') {
+      contentPrice = 15 * selectedDuration; // 유튜브+블로그+인스타 세트
     }
     
-    if (blogMarketingType) {
-      const pricePerMonth = blogMarketingType === 'twice' ? 10 : 18;
-      blogPrice = pricePerMonth * selectedDuration;
-    }
-    
-    const total = (basePrice * selectedDuration) + contentPrice + blogPrice;
+    const total = (basePrice * selectedDuration) + contentPrice;
     return total;
   };
 
   const calculateMonthlyPrice = () => {
-    const basePrice = selectedPlan === 'standard' ? 20 : 30;
+    const basePrice = 30;
     let contentPrice = 0;
-    let blogPrice = 0;
     
-    if (contentMarketingType && marketingPeriod === 'monthly') {
-      contentPrice = contentMarketingType === 'gift' ? 30 : 90;
+    if (contentMarketingType === 'gift') {
+      contentPrice = 15; // 유튜브+블로그+인스타 세트
     }
     
-    if (blogMarketingType) {
-      blogPrice = blogMarketingType === 'twice' ? 10 : 18;
-    }
-    
-    return basePrice + contentPrice + blogPrice;
+    return basePrice + contentPrice;
   };
 
   const handleContinue = () => {
@@ -118,9 +101,7 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
               <h3 className="font-bold text-sm md:text-lg">실시간 견적</h3>
               <div className="flex items-center space-x-2 md:space-x-4">
                 <span className="text-gray-600 hidden md:inline">선택된 플랜:</span>
-                <span className="font-semibold text-primary text-sm md:text-base">
-                  {selectedPlan === 'standard' ? '스탠다드' : '프리미엄'}
-                </span>
+                <span className="font-semibold text-primary text-sm md:text-base">통합 패키지</span>
                 <span className="text-lg md:text-2xl font-bold text-primary">
                   월 {calculateMonthlyPrice()}만원
                 </span>
@@ -163,43 +144,31 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div className="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-800 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
-                      <p className="font-semibold mb-1">기본 플랜</p>
-                      <p>스탠다드: 카페 마케팅 기본 패키지</p>
-                      <p>프리미엄: 카페 + 월 2회 블로그 포스팅</p>
+                      <p className="font-semibold mb-1">통합 입점 패키지</p>
+                      <p>카페 마케팅 + 월 1건 유튜브 + 블로그 + 인스타</p>
+                      <p>제공 물품에 대한 전문 리뷰 콘텐츠</p>
                       <div className="absolute bottom-0 right-4 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800"></div>
                     </div>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <button
-                    onClick={() => handlePlanChange('standard')}
-                    className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
-                      selectedPlan === 'standard'
-                        ? 'border-primary bg-primary/5'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="font-medium">스탠다드</div>
-                    <div className="text-sm text-gray-600">
-                      <span className="line-through">30만원</span>
-                      <span className="ml-2 text-primary font-bold">20만원/월</span>
-                    </div>
-                  </button>
-                  <button
-                    onClick={() => handlePlanChange('premium')}
-                    className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
-                      selectedPlan === 'premium'
-                        ? 'border-primary bg-primary/5'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
+                    className="w-full p-3 rounded-lg border-2 text-left border-primary bg-primary/5"
                   >
                     <div className="font-medium">
-                      프리미엄
-                      <span className="ml-2 text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">블로그 포함</span>
+                      통합 패키지
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="flex flex-wrap gap-1 mt-1">
+                      <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">유튜브</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">블로그</span>
+                      <span className="text-xs bg-pink-100 text-pink-700 px-2 py-0.5 rounded">인스타</span>
+                    </div>
+                    <div className="text-sm text-gray-600 mt-1">
                       <span className="line-through">40만원</span>
                       <span className="ml-2 text-primary font-bold">30만원/월</span>
+                    </div>
+                    <div className="text-xs text-purple-600 mt-1">
+                      월 1건씩 3채널 콘텐츠 포함
                     </div>
                   </button>
                 </div>
@@ -284,31 +253,18 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                     </label>
                   </div>
                   
-                  {/* 콘텐츠 마케팅 */}
+                  {/* 추가 콘텐츠 제작 */}
                   <select
                     value={contentMarketingType || ''}
                     onChange={(e) => onQuoteChange({ contentMarketing: e.target.value as ContentMarketingType || null })}
                     className="w-full p-2 border border-gray-300 rounded-lg text-sm"
                   >
-                    <option value="">콘텐츠 마케팅 선택</option>
-                    <option value="gift">
-                      물품 증정 ({marketingPeriod === 'quarterly' ? '10만원/분기' : '30만원/월'})
-                    </option>
-                    <option value="rental">
-                      물품 대여 ({marketingPeriod === 'quarterly' ? '30만원/분기' : '90만원/월'})
-                    </option>
+                    <option value="">추가 콘텐츠 선택</option>
+                    <option value="gift">유튜브+블로그+인스타 (15만원/세트)</option>
                   </select>
-                  
-                  {/* 블로그 마케팅 */}
-                  <select
-                    value={blogMarketingType || ''}
-                    onChange={(e) => onQuoteChange({ blogMarketing: e.target.value as BlogMarketingType || null })}
-                    className="w-full p-2 border border-gray-300 rounded-lg text-sm"
-                  >
-                    <option value="">블로그 마케팅 선택</option>
-                    <option value="twice">월 2회 (10만원/월)</option>
-                    <option value="four">월 4회 (18만원/월)</option>
-                  </select>
+                  <div className="text-xs text-blue-600 mt-1">
+                    ※ 물품 제공 시에만 가능
+                  </div>
                 </div>
               </div>
 

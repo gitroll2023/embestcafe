@@ -5,52 +5,18 @@ import React from 'react';
 interface PlanDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
-  planType: 'standard' | 'premium';
+  planType: 'premium';
 }
 
 const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, planType }) => {
   if (!isOpen) return null;
 
   const planDetails = {
-    standard: {
-      title: '스탠다드 플랜',
-      price: '20만원/월',
-      originalPrice: '30만원/월',
-      description: '기본적인 카페 마케팅을 원하는 업체',
-      features: [
-        {
-          icon: '📢',
-          title: '전용 게시판 개설',
-          description: '귀사만의 전용 게시판을 개설하여 제품 정보와 소식을 회원들에게 직접 전달합니다.'
-        },
-        {
-          icon: '🎯',
-          title: '입점 소형배너 등록',
-          description: '카페 메인 페이지에 브랜드 배너를 노출하여 지속적인 브랜드 인지도를 구축합니다.'
-        },
-        {
-          icon: '👥',
-          title: '체험단 모집 공고 지원',
-          description: '제품 체험단 모집을 위한 공고 작성과 운영을 지원하여 실사용 리뷰를 확보합니다.'
-        },
-        {
-          icon: '🖼️',
-          title: '메인 긴 배너 노출',
-          description: '카페 메인의 대형 배너 영역에 월 1회 교체 가능한 프로모션 배너를 노출합니다.'
-        }
-      ],
-      benefits: [
-        '14.7만+ 활성 회원에게 직접 노출',
-        '월 150만+ 페이지뷰 달성 (실측 기준)',
-        'FPS 게임 특화 타겟 마케팅',
-        '실시간 피드백 및 리뷰 수집'
-      ]
-    },
     premium: {
-      title: '프리미엄 플랜',
+      title: '통합 입점 패키지',
       price: '30만원/월',
       originalPrice: '40만원/월',
-      description: '적극적인 브랜드 노출 + 블로그 마케팅을 원하는 업체',
+      description: '카페 마케팅 + 월 1건 유튜브/블로그/인스타 포함',
       features: [
         {
           icon: '📢',
@@ -78,18 +44,29 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
           description: '더 자주 업데이트 가능한 메인 배너로 신제품 출시나 이벤트를 즉시 홍보할 수 있습니다.'
         },
         {
+          icon: '🎬',
+          title: '유튜브 영상 제작 (월 1건)',
+          description: '1.12만+ 구독자 채널에 제공 물품에 대한 전문 리뷰 영상을 제작합니다.'
+        },
+        {
           icon: '📝',
-          title: 'EM베스트 최적화 블로그 월 2회 포스팅',
-          description: '네이버 최적화 블로그에 월 2회 전문적인 제품 리뷰와 정보성 콘텐츠를 발행합니다.'
+          title: '블로그 포스팅 (월 1건)',
+          description: '네이버 최적화 블로그에 제공 물품에 대한 전문 리뷰를 포스팅합니다.'
+        },
+        {
+          icon: '📸',
+          title: '인스타그램 콘텐츠 (월 1건)',
+          description: '7.1천+ 팔로워 채널에 포스트로 제품 리뷰를 공유합니다.'
         }
       ],
       benefits: [
-        '스탠다드의 모든 혜택 포함',
-        '프리미엄 위치 브랜드 노출',
-        '주 단위 배너 업데이트 가능',
-        '월 2회 전문 블로그 포스팅',
+        '카페 마케팅 기본 패키지',
+        '월 1건 유튜브 영상 제작',
+        '월 1건 블로그 포스팅',
+        '월 1건 인스타그램 콘텐츠',
+        '제공 물품에 대한 3채널 통합 리뷰',
         '검색 엔진 최적화 효과',
-        '장기적인 콘텐츠 자산 구축'
+        '멀티채널 마케팅 효과'
       ]
     }
   };

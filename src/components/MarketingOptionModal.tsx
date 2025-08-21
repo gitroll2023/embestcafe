@@ -26,7 +26,7 @@ const MarketingOptionModal: React.FC<MarketingOptionModalProps> = ({ isOpen, onC
           icon: '📸',
           name: '인스타그램',
           stats: '팔로워 7.1천+',
-          description: '릴스 및 포스트 제작'
+          description: '포스트 제작'
         },
         {
           icon: '📝',
@@ -85,24 +85,24 @@ const MarketingOptionModal: React.FC<MarketingOptionModalProps> = ({ isOpen, onC
       ],
       options: [
         {
-          title: '월 2회 포스팅',
-          price: '10만원/월',
+          title: '추가 1건',
+          price: '10만원/건',
           features: [
-            '매월 2회 전문 리뷰 포스팅',
+            '해당 월에 1건 추가 포스팅',
             'SEO 최적화 키워드 적용',
-            '상세한 제품 정보 및 사용기',
-            '기본적인 브랜드 노출'
+            '제공 물품에 대한 전문 리뷰',
+            '검색 노출 최적화'
           ],
           recommended: true
         },
         {
-          title: '월 4회 포스팅',
-          price: '18만원/월',
+          title: '추가 3건 패키지',
+          price: '25만원',
           features: [
-            '매월 4회 전문 리뷰 포스팅',
+            '한 달 내 3건 추가 포스팅',
             '다양한 키워드로 검색 노출 극대화',
-            '제품별 특화 콘텐츠 제작',
-            '적극적인 브랜드 노출'
+            '제공 물품별 특화 콘텐츠',
+            '집중적인 브랜드 노출'
           ],
           recommended: false
         }

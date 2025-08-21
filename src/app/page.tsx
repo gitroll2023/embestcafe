@@ -14,7 +14,7 @@ import Footer from '../components/Footer';
 import EarlyBirdBanner from '../components/EarlyBirdBanner';
 import FloatingQuoteBar from '../components/FloatingQuoteBar';
 
-type FormPlan = 'standard' | 'premium';
+type FormPlan = 'premium';
 type ContractDuration = 3 | 6 | 12;
 type ContentMarketingType = null | 'gift' | 'rental';
 type BlogMarketingType = null | 'twice' | 'four';
@@ -28,7 +28,7 @@ export interface QuoteState {
 
 export default function Home() {
   const [quoteState, setQuoteState] = useState<QuoteState>({
-    plan: 'standard',
+    plan: 'premium',
     duration: 3,
     contentMarketing: null,
     blogMarketing: null
