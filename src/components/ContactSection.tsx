@@ -12,7 +12,6 @@ type FormPlan = 'premium';
 type ContractDuration = 3 | 6 | 12;
 type ContentMarketingType = null | 'gift' | 'rental';
 type BlogMarketingType = null | 'twice' | 'four';
-type MarketingPeriod = 'quarterly' | 'monthly';
 
 interface QuoteState {
   plan: FormPlan;
@@ -33,7 +32,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({ quoteState, onQuoteChan
   const [selectedPlanForModal, setSelectedPlanForModal] = useState<FormPlan>('premium');
   const [isMarketingModalOpen, setIsMarketingModalOpen] = useState(false);
   const [marketingModalType, setMarketingModalType] = useState<'content' | 'blog'>('content');
-  const [marketingPeriod, setMarketingPeriod] = useState<MarketingPeriod>('quarterly');
   const [companyInfo, setCompanyInfo] = useState({
     companyName: '',
     contactName: '',
@@ -409,8 +407,8 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
                         className="mr-3 h-4 w-4 text-primary"
                       />
                       <div>
-                        <span className="font-medium">유튜브+블로그+인스타 세트</span>
-                        <p className="text-sm text-gray-600">물품 제공 시 세 채널 통합 리뷰</p>
+                        <span className="font-medium">유튜브+블로그+인스타 추가 세트</span>
+                        <p className="text-sm text-gray-600">기본 1회 + 추가 1회 = 월 총 2회</p>
                         <p className="text-xs text-blue-600">🎬 유튜브 + 📝 블로그 + 📸 인스타그램</p>
                       </div>
                     </div>
@@ -420,9 +418,12 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
                 <div className="mt-3 p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
                   <p className="font-semibold">ℹ️ 안내사항</p>
                   <ul className="mt-1 space-y-1 text-xs">
+                    <li>• 기본 패키지: 월 1회 (유튜브+블로그+인스타)</li>
+                    <li>• 추가 선택 시: 월 총 2회 (기본 1회 + 추가 1회)</li>
+                    <li>• 추가 콘텐츠는 매달 개별적으로 신청 가능</li>
+                    <li>• 특정 달에만 추가하고 싶으시면 별도 연락 주세요</li>
                     <li>• 추가 콘텐츠는 물품 제공 시에만 가능합니다</li>
-                    <li>• 유튜브, 블로그, 인스타그램 3개 채널 통합 리뷰</li>
-                    <li>• 동일 제품에 대한 콘텐츠로 제작됩니다</li>
+                    <li>• 동일 제품에 대한 3개 채널 통합 리뷰</li>
                   </ul>
                 </div>
               </div>

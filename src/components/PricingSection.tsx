@@ -51,16 +51,20 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
   const additionalOptions = [
     {
       title: '추가 콘텐츠 제작 (물품 제공 시)',
-      description: '기본 제공 외 추가 유튜브+블로그+인스타그램 세트',
+      description: '기본 월 1회에서 추가 1회 더! 월 총 2회 제작',
       icon: '🎬',
       options: [
         {
-          name: '유튜브+블로그+인스타 세트',
-          price: '15만원/세트',
-          description: '유튜브 1건 + 블로그 1건 + 인스타 1건'
+          name: '유튜브+블로그+인스타 추가 1회',
+          price: '15만원',
+          description: '기본 1회 + 추가 1회 = 월 총 2회'
         }
       ],
       includes: [
+        '기본 패키지는 월 1회 제공',
+        '추가 선택 시 월 총 2회 제작',
+        '매달 개별적으로 추가 신청 가능',
+        '특정 달에만 추가 가능 (별도 연락)',
         '유튜브 영상 제작 (1.12만+ 구독자)',
         '네이버 블로그 포스팅',
         '인스타그램 포스트 (7.1천+ 팔로워)',

@@ -28,7 +28,6 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
   const { plan: selectedPlan, duration: selectedDuration, contentMarketing: contentMarketingType, blogMarketing: blogMarketingType } = quoteState;
   const [isExpanded, setIsExpanded] = useState(false);
   const [showBar, setShowBar] = useState(false);
-  const [marketingPeriod, setMarketingPeriod] = useState<'quarterly' | 'monthly'>('quarterly');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -223,36 +222,6 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                   </div>
                 </div>
                 <div className="space-y-3">
-                  {/* 콘텐츠 마케팅 주기 선택 */}
-                  <div className="flex items-center gap-3 mb-2">
-                    <label className="flex items-center cursor-pointer text-sm">
-                      <input
-                        type="radio"
-                        name="floatingMarketingPeriod"
-                        value="quarterly"
-                        checked={marketingPeriod === 'quarterly'}
-                        onChange={() => setMarketingPeriod('quarterly')}
-                        className="mr-1.5"
-                      />
-                      <span className={marketingPeriod === 'quarterly' ? 'text-primary font-medium' : ''}>
-                        분기별
-                      </span>
-                    </label>
-                    <label className="flex items-center cursor-pointer text-sm">
-                      <input
-                        type="radio"
-                        name="floatingMarketingPeriod"
-                        value="monthly"
-                        checked={marketingPeriod === 'monthly'}
-                        onChange={() => setMarketingPeriod('monthly')}
-                        className="mr-1.5"
-                      />
-                      <span className={marketingPeriod === 'monthly' ? 'text-primary font-medium' : ''}>
-                        월별
-                      </span>
-                    </label>
-                  </div>
-                  
                   {/* 추가 콘텐츠 제작 */}
                   <select
                     value={contentMarketingType || ''}
@@ -260,10 +229,10 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                     className="w-full p-2 border border-gray-300 rounded-lg text-sm"
                   >
                     <option value="">추가 콘텐츠 선택</option>
-                    <option value="gift">유튜브+블로그+인스타 (15만원/세트)</option>
+                    <option value="gift">유튜브+블로그+인스타 추가 1회 (15만원)</option>
                   </select>
                   <div className="text-xs text-blue-600 mt-1">
-                    ※ 물품 제공 시에만 가능
+                    ※ 기본 1회 + 추가 1회 = 월 총 2회 제작
                   </div>
                 </div>
               </div>
