@@ -231,7 +231,7 @@ const BenefitsSection = () => {
                   <h5 className="text-xl font-bold">물품 증정 옵션</h5>
                   <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-bold">인기</span>
                 </div>
-                <div className="text-3xl font-bold text-primary mb-4">10만원<span className="text-lg text-gray-500">/분기</span></div>
+                <div className="text-3xl font-bold text-primary mb-4">15만원<span className="text-lg text-gray-500">/건</span></div>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -264,7 +264,7 @@ const BenefitsSection = () => {
                   <h5 className="text-xl font-bold">물품 대여 옵션</h5>
                   <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">고가제품</span>
                 </div>
-                <div className="text-3xl font-bold text-primary mb-4">30만원<span className="text-lg text-gray-500">/분기</span></div>
+                <div className="text-3xl font-bold text-primary mb-4">30만원<span className="text-lg text-gray-500">/건</span></div>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <svg className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -295,7 +295,7 @@ const BenefitsSection = () => {
 
             <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 text-center">
               <p className="text-yellow-800">
-                <strong>📢 안내:</strong> 3개월마다 1회 제공되며, 동일 분기 내 추가 제작 시 물품 증정 15만원, 물품 대여 30만원 (VAT 별도)
+                <strong>📢 안내:</strong> 유튜브는 기본 3개월마다 1회 제공되며, 추가 제작 시 물품 증정 15만원/건, 물품 대여 30만원/건 (VAT 별도)
               </p>
             </div>
           </div>

@@ -55,17 +55,26 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
     icon: '📢',
     items: [
       {
-        name: '유튜브 추가 제작',
-        price: '건당 15만원',
-        description: '기본 3개월 1회 외 추가 제작 필요 시'
+        name: '유튜브 추가 제작 (물품 증정)',
+        price: '15만원/건',
+        description: '리뷰 후 제품을 리뷰어에게 증정',
+        badge: '인기',
+        recommended: '50만원 이하 제품 추천'
+      },
+      {
+        name: '유튜브 추가 제작 (물품 대여)',
+        price: '30만원/건',
+        description: '리뷰 완료 후 제품 반환',
+        badge: '고가제품',
+        recommended: '50만원 이상 고가 제품 추천'
       },
       {
         name: '블로그/인스타 추가',
         price: '월 15만원',
-        description: '월 2회로 확대 필요 시'
+        description: '월 2회로 확대 (물품 제공 필수)'
       }
     ],
-    notice: '※ 모든 추가 옵션은 물품 제공 시에만 가능하며, 담당 매니저와 상의 후 진행됩니다.'
+    notice: '※ 유튜브는 3개월마다 1회 기본 제공되며, 동일 분기 내 추가 제작 시 위 금액이 적용됩니다.'
   };
 
   return (
@@ -222,10 +231,22 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             <h4 className="font-semibold text-lg mb-4">추가 콘텐츠 옵션 가격표</h4>
             <div className="space-y-4 mb-6">
               {additionalInfo.items.map((item, idx) => (
-                <div key={idx} className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                  <div>
-                    <span className="font-medium">{item.name}</span>
+                <div key={idx} className="flex justify-between items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-medium">{item.name}</span>
+                      {item.badge && (
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                          item.badge === '인기' ? 'bg-red-100 text-red-700' : 'bg-purple-100 text-purple-700'
+                        }`}>
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-gray-600">{item.description}</p>
+                    {item.recommended && (
+                      <p className="text-xs text-blue-600 mt-1">💡 {item.recommended}</p>
+                    )}
                   </div>
                   <span className="font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
                 </div>

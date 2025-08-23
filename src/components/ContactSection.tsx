@@ -31,7 +31,6 @@ const ContactSection: React.FC<ContactSectionProps> = ({ quoteState, onQuoteChan
   const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
   const [selectedPlanForModal, setSelectedPlanForModal] = useState<FormPlan>('premium');
   const [isMarketingModalOpen, setIsMarketingModalOpen] = useState(false);
-  const [marketingModalType, setMarketingModalType] = useState<'content' | 'blog'>('content');
   const [companyInfo, setCompanyInfo] = useState({
     companyName: '',
     contactName: '',
@@ -385,9 +384,12 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
                 
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <p className="text-sm text-gray-700 font-medium mb-2">📌 추가 콘텐츠가 필요하신가요?</p>
-                  <p className="text-xs text-gray-600">담당 매니저와 상의 후 추가 제작이 가능합니다.</p>
-                  <p className="text-xs text-gray-600">• 유튜브 추가: 건당 15만원</p>
-                  <p className="text-xs text-gray-600">• 블로그/인스타 추가: 월 15만원</p>
+                  <p className="text-xs text-gray-600 mb-2">담당 매니저와 상의 후 추가 제작이 가능합니다.</p>
+                  <div className="space-y-1 text-xs text-gray-600">
+                    <p>• 유튜브 추가 (물품 증정): 15만원/건</p>
+                    <p>• 유튜브 추가 (물품 대여): 30만원/건</p>
+                    <p>• 블로그/인스타 추가: 월 15만원</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -623,7 +625,6 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
       <MarketingOptionModal
         isOpen={isMarketingModalOpen}
         onClose={() => setIsMarketingModalOpen(false)}
-        type={marketingModalType}
       />
     </section>
   );
