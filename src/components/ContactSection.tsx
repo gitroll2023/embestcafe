@@ -96,12 +96,8 @@ const ContactSection: React.FC<ContactSectionProps> = ({ quoteState, onQuoteChan
     // 최종 PIN: XXX + 날짜 + XXX + 시간
     const randomPin = randomPart1 + dateCode + randomPart2 + timeCode;
     
-    let contentMarketingText = '';
-    if (contentMarketingType === 'gift') {
-      contentMarketingText = `\n- 추가 콘텐츠 제작 (유튜브+블로그+인스타 세트): 15만원/세트`;
-    }
-
-    const totalPrice = calculateTotalPrice().replace('만원', '');
+    // 추가 옵션 제거, 고정 가격으로 계산
+    const totalPrice = (basePrice * selectedDuration).toString();
     const totalWithVat = Math.round(parseInt(totalPrice) * 1.1);
 
     return `[EM베스트 입점 신청서]
@@ -121,14 +117,12 @@ const ContactSection: React.FC<ContactSectionProps> = ({ quoteState, onQuoteChan
 ========================================
 1. 선택 플랜: ${planName} (정가 ${originalPrice}만원 → 특가 ${basePrice}만원/월)
 2. 계약 기간: ${selectedDuration}개월
-3. 추가 옵션:${contentMarketingText}
-${!contentMarketingText ? ' 없음' : ''}
+3. 포함 내용: 블로그/인스타 월 1회, 유튜브 3개월 1회
 
 ========================================
 비용 산정
 ========================================
 - 기본 요금: ${basePrice}만원 × ${selectedDuration}개월 = ${basePrice * selectedDuration}만원
-${contentMarketingText ? `- 추가 콘텐츠: 15만원 × ${selectedDuration}세트 = ${15 * selectedDuration}만원` : ''}
 
 총 비용: ₩${formatNumber(parseInt(totalPrice) * 10000)}원 (VAT 별도)
 VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
@@ -159,26 +153,12 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
   
   const calculateTotalPrice = () => {
     const basePrice = 30;
-    let contentPrice = 0;
-    
-    if (contentMarketingType === 'gift') {
-      // 유튜브+블로그+인스타 세트: 15만원 * 개수
-      contentPrice = 15 * selectedDuration;
-    }
-    
-    const total = (basePrice * selectedDuration) + contentPrice;
+    const total = basePrice * selectedDuration;
     return `${total}만원`;
   };
   
   const calculateMonthlyPrice = () => {
-    const basePrice = 30;
-    let contentPrice = 0;
-    
-    if (contentMarketingType === 'gift') {
-      contentPrice = 15; // 유튜브+블로그+인스타 세트
-    }
-    
-    return basePrice + contentPrice;
+    return 30; // 고정 가격
   };
   
   // 유효성 검사 함수들
@@ -310,12 +290,12 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
                         통합 입점 패키지
                       </h4>
                       <div className="flex flex-wrap gap-2 mb-2">
-                        <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-semibold">유튜브 1건</span>
-                        <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">블로그 1건</span>
-                        <span className="bg-pink-100 text-pink-700 px-2 py-0.5 rounded text-xs font-semibold">인스타 1건</span>
+                        <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-semibold">유튜브 3개월 1건</span>
+                        <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">블로그 월 1건</span>
+                        <span className="bg-pink-100 text-pink-700 px-2 py-0.5 rounded text-xs font-semibold">인스타 월 1건</span>
                       </div>
-                      <p className="text-gray-600 mb-1">카페 마케팅 + 월별 콘텐츠 제작</p>
-                      <p className="text-xs text-purple-600 mb-2">🎬 유튜브 + 📝 블로그 + 📸 인스타 포함</p>
+                      <p className="text-gray-600 mb-1">카페 마케팅 + 정기 콘텐츠 제작</p>
+                      <p className="text-xs text-purple-600 mb-2">📝 블로그/📸 인스타 월 1회 + 🎬 유튜브 3개월 1회</p>
                       <div className="mb-1">
                         <span className="text-sm line-through text-gray-400">40만원</span>
                         <span className="ml-2 bg-red-100 text-red-600 px-2 py-0.5 rounded text-xs font-semibold">25% 할인</span>
@@ -364,67 +344,50 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
               </div>
             </div>
 
-            {/* 3. 추가 옵션 선택 */}
+            {/* 3. 포함 내용 안내 */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <h3 className="text-xl font-bold mb-6 flex items-center">
                 <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
-                추가 옵션 선택 (선택사항)
+                포함 내용
               </h3>
               
-              {/* 추가 콘텐츠 제작 */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="font-semibold">추가 콘텐츠 제작 (물품 제공 시)</h4>
-                  <button
-                    onClick={() => {
-                      setMarketingModalType('content');
-                      setIsMarketingModalOpen(true);
-                    }}
-                    className="text-sm text-primary hover:text-primary/80 font-medium"
-                  >
-                    자세히 보기 →
-                  </button>
-                </div>
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6">
+                <h4 className="font-semibold mb-4">통합 입점 패키지 포함 내용</h4>
                 <div className="space-y-3">
-                  <label className="flex items-center p-4 rounded-lg border-2 cursor-pointer transition-all hover:bg-gray-50">
-                    <input
-                      type="radio"
-                      name="contentMarketing"
-                      checked={contentMarketingType === null}
-                      onChange={() => onQuoteChange({ contentMarketing: null })}
-                      className="mr-3 h-4 w-4 text-primary"
-                    />
-                    <span>선택 안함</span>
-                  </label>
-                  
-                  <label className="flex items-center justify-between p-4 rounded-lg border-2 cursor-pointer transition-all hover:bg-gray-50">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        name="contentMarketing"
-                        checked={contentMarketingType === 'gift'}
-                        onChange={() => onQuoteChange({ contentMarketing: 'gift' })}
-                        className="mr-3 h-4 w-4 text-primary"
-                      />
-                      <div>
-                        <span className="font-medium">유튜브+블로그+인스타 추가 세트</span>
-                        <p className="text-sm text-gray-600">기본 1회 + 추가 1회 = 월 총 2회</p>
-                        <p className="text-xs text-blue-600">🎬 유튜브 + 📝 블로그 + 📸 인스타그램</p>
-                      </div>
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">카페 마케팅</span>
+                      <p className="text-sm text-gray-600">전용 게시판, 배너, 체험단 모집 지원</p>
                     </div>
-                    <span className="font-bold text-primary">15만원/세트</span>
-                  </label>
+                  </div>
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">블로그 & 인스타그램</span>
+                      <p className="text-sm text-gray-600">월 1회 콘텐츠 제작 및 게시</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">유튜브</span>
+                      <p className="text-sm text-gray-600">3개월에 1회 영상 제작 (1.12만+ 구독자)</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-3 p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
-                  <p className="font-semibold">ℹ️ 안내사항</p>
-                  <ul className="mt-1 space-y-1 text-xs">
-                    <li>• 기본 패키지: 월 1회 (유튜브+블로그+인스타)</li>
-                    <li>• 추가 선택 시: 월 총 2회 (기본 1회 + 추가 1회)</li>
-                    <li>• 추가 콘텐츠는 매달 개별적으로 신청 가능</li>
-                    <li>• 특정 달에만 추가하고 싶으시면 별도 연락 주세요</li>
-                    <li>• 추가 콘텐츠는 물품 제공 시에만 가능합니다</li>
-                    <li>• 동일 제품에 대한 3개 채널 통합 리뷰</li>
-                  </ul>
+                
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <p className="text-sm text-gray-700 font-medium mb-2">📌 추가 콘텐츠가 필요하신가요?</p>
+                  <p className="text-xs text-gray-600">담당 매니저와 상의 후 추가 제작이 가능합니다.</p>
+                  <p className="text-xs text-gray-600">• 유튜브 추가: 건당 15만원</p>
+                  <p className="text-xs text-gray-600">• 블로그/인스타 추가: 월 15만원</p>
                 </div>
               </div>
             </div>
@@ -446,12 +409,10 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
                   <span className="font-medium">{selectedDuration}개월</span>
                 </div>
                 
-                {contentMarketingType === 'gift' && (
-                  <div className="flex justify-between items-center pb-4 border-b">
-                    <span className="text-gray-600">추가 콘텐츠</span>
-                    <span className="font-medium">유튜브+블로그+인스타 세트</span>
-                  </div>
-                )}
+                <div className="flex justify-between items-center pb-4 border-b">
+                  <span className="text-gray-600">포함 콘텐츠</span>
+                  <span className="font-medium text-sm">블로그/인스타 월 1회, 유튜브 3개월 1회</span>
+                </div>
               </div>
               
               <div className="bg-gray-50 rounded-xl p-4 mb-6">

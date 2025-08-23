@@ -52,25 +52,12 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
 
   const calculateTotalPrice = () => {
     const basePrice = 30;
-    let contentPrice = 0;
-    
-    if (contentMarketingType === 'gift') {
-      contentPrice = 15 * selectedDuration; // 유튜브+블로그+인스타 세트
-    }
-    
-    const total = (basePrice * selectedDuration) + contentPrice;
+    const total = basePrice * selectedDuration;
     return total;
   };
 
   const calculateMonthlyPrice = () => {
-    const basePrice = 30;
-    let contentPrice = 0;
-    
-    if (contentMarketingType === 'gift') {
-      contentPrice = 15; // 유튜브+블로그+인스타 세트
-    }
-    
-    return basePrice + contentPrice;
+    return 30; // 고정 가격
   };
 
   const handleContinue = () => {
@@ -144,7 +131,7 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                     </svg>
                     <div className="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-800 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
                       <p className="font-semibold mb-1">통합 입점 패키지</p>
-                      <p>카페 마케팅 + 월 1건 유튜브 + 블로그 + 인스타</p>
+                      <p>카페 마케팅 + 블로그/인스타 월 1건 + 유튜브 3개월 1건</p>
                       <p>제공 물품에 대한 전문 리뷰 콘텐츠</p>
                       <div className="absolute bottom-0 right-4 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800"></div>
                     </div>
@@ -158,16 +145,16 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                       통합 패키지
                     </div>
                     <div className="flex flex-wrap gap-1 mt-1">
-                      <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">유튜브</span>
-                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">블로그</span>
-                      <span className="text-xs bg-pink-100 text-pink-700 px-2 py-0.5 rounded">인스타</span>
+                      <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">유튜브 3개월</span>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">블로그 월</span>
+                      <span className="text-xs bg-pink-100 text-pink-700 px-2 py-0.5 rounded">인스타 월</span>
                     </div>
                     <div className="text-sm text-gray-600 mt-1">
                       <span className="line-through">40만원</span>
                       <span className="ml-2 text-primary font-bold">30만원/월</span>
                     </div>
                     <div className="text-xs text-purple-600 mt-1">
-                      월 1건씩 3채널 콘텐츠 포함
+                      블로그/인스타 월 1건, 유튜브 3개월 1건
                     </div>
                   </button>
                 </div>
@@ -206,34 +193,39 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
                 </div>
               </div>
 
-              {/* 3. 추가 옵션 */}
+              {/* 3. 포함 내용 */}
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-semibold">3. 추가 옵션</h4>
+                  <h4 className="font-semibold">3. 포함 내용</h4>
                   <div className="group relative">
                     <svg className="w-4 h-4 text-gray-400 cursor-help" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <div className="absolute bottom-full right-0 mb-2 w-64 p-3 bg-gray-800 text-white text-xs rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
-                      <p className="font-semibold mb-1">추가 옵션</p>
-                      <p>선택사항으로 필요에 따라 추가 가능</p>
+                      <p className="font-semibold mb-1">포함 내용</p>
+                      <p>카페 마케팅 + 정기 콘텐츠 제작</p>
                       <div className="absolute bottom-0 right-4 translate-y-1/2 rotate-45 w-2 h-2 bg-gray-800"></div>
                     </div>
                   </div>
                 </div>
-                <div className="space-y-3">
-                  {/* 추가 콘텐츠 제작 */}
-                  <select
-                    value={contentMarketingType || ''}
-                    onChange={(e) => onQuoteChange({ contentMarketing: e.target.value as ContentMarketingType || null })}
-                    className="w-full p-2 border border-gray-300 rounded-lg text-sm"
-                  >
-                    <option value="">추가 콘텐츠 선택</option>
-                    <option value="gift">유튜브+블로그+인스타 추가 1회 (15만원)</option>
-                  </select>
-                  <div className="text-xs text-blue-600 mt-1">
-                    ※ 기본 1회 + 추가 1회 = 월 총 2회 제작
+                <div className="bg-gray-50 rounded-lg p-3 text-sm">
+                  <div className="space-y-1">
+                    <p className="flex items-center">
+                      <span className="text-blue-500 mr-2">✓</span>
+                      블로그/인스타 월 1회
+                    </p>
+                    <p className="flex items-center">
+                      <span className="text-blue-500 mr-2">✓</span>
+                      유튜브 3개월 1회
+                    </p>
+                    <p className="flex items-center">
+                      <span className="text-blue-500 mr-2">✓</span>
+                      카페 마케팅 포함
+                    </p>
                   </div>
+                  <p className="text-xs text-gray-600 mt-2">
+                    ※ 추가 콘텐츠는 매니저 문의
+                  </p>
                 </div>
               </div>
 

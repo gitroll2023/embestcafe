@@ -20,7 +20,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
       threeMonthOriginalPrice: '120만원',
       yearlyPrice: '360만원',
       yearlyOriginalPrice: '480만원',
-      description: '카페 마케팅 + 월 1건 콘텐츠(유튜브+블로그+인스타) 포함',
+      description: '카페 마케팅 + 정기 콘텐츠(블로그+인스타 월 1회, 유튜브 3개월 1회) 포함',
       features: [
         {
           title: '카페 마케팅',
@@ -33,9 +33,9 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
           ]
         },
         {
-          title: '월별 콘텐츠 제작 (기본 포함)',
+          title: '정기 콘텐츠 제작 (기본 포함)',
           items: [
-            '유튜브 영상 제작 - 월 1건',
+            '유튜브 영상 제작 - 3개월에 1건',
             '네이버 블로그 포스팅 - 월 1건',
             '인스타그램 포스트 - 월 1건',
             '제공 물품에 대한 전문 리뷰 콘텐츠',
@@ -48,32 +48,25 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
     },
   ];
 
-  const additionalOptions = [
-    {
-      title: '추가 콘텐츠 제작 (물품 제공 시)',
-      description: '기본 월 1회에서 추가 1회 더! 월 총 2회 제작',
-      icon: '🎬',
-      options: [
-        {
-          name: '유튜브+블로그+인스타 추가 1회',
-          price: '15만원',
-          description: '기본 1회 + 추가 1회 = 월 총 2회'
-        }
-      ],
-      includes: [
-        '기본 패키지는 월 1회 제공',
-        '추가 선택 시 월 총 2회 제작',
-        '매달 개별적으로 추가 신청 가능',
-        '특정 달에만 추가 가능 (별도 연락)',
-        '유튜브 영상 제작 (1.12만+ 구독자)',
-        '네이버 블로그 포스팅',
-        '인스타그램 포스트 (7.1천+ 팔로워)',
-        '동일 제품에 대한 통합 리뷰',
-        'SEO 최적화 및 검색 노출',
-        '※ 물품 제공 필수'
-      ]
-    }
-  ];
+  // 추가 옵션 안내 (선택이 아닌 안내용)
+  const additionalInfo = {
+    title: '추가 콘텐츠 제작 안내',
+    description: '필요 시 매니저에게 문의해주세요',
+    icon: '📢',
+    items: [
+      {
+        name: '유튜브 추가 제작',
+        price: '건당 15만원',
+        description: '기본 3개월 1회 외 추가 제작 필요 시'
+      },
+      {
+        name: '블로그/인스타 추가',
+        price: '월 15만원',
+        description: '월 2회로 확대 필요 시'
+      }
+    ],
+    notice: '※ 모든 추가 옵션은 물품 제공 시에만 가능하며, 담당 매니저와 상의 후 진행됩니다.'
+  };
 
   return (
     <section id="pricing" className="container-custom">
@@ -125,13 +118,13 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
                   {plan.name === '통합 입점 패키지' && (
                     <div className="flex flex-wrap gap-2 mb-3">
                       <div className="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">
-                        🎬 유튜브 1건
+                        🎬 유튜브 3개월 1건
                       </div>
                       <div className="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">
-                        📝 블로그 1건
+                        📝 블로그 월 1건
                       </div>
                       <div className="inline-flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">
-                        📸 인스타 1건
+                        📸 인스타 월 1건
                       </div>
                     </div>
                   )}
@@ -212,56 +205,54 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
           </div>
           <div className="text-center mt-6 text-gray-600">
             <p className="font-semibold mb-2">※ 모든 요금제는 최소 3개월 단위 계약, VAT 별도</p>
-            <p className="text-sm">※ 기본 제공되는 유튜브/블로그/인스타는 업체가 제공하는 물품에 대한 리뷰 콘텐츠입니다</p>
-            <p className="text-sm">※ 추가 콘텐츠는 물품 제공 시에만 가능하며 세트당 15만원입니다</p>
+            <p className="text-sm">※ 기본 제공: 블로그/인스타 월 1회, 유튜브 3개월 1회 (업체 제공 물품에 대한 리뷰)</p>
+            <p className="text-sm">※ 추가 콘텐츠 필요 시 매니저에게 문의해주세요</p>
           </div>
         </div>
 
-        {/* 추가 옵션 */}
-        <div className="bg-gray-50 rounded-3xl p-8 md:p-12">
-          <h3 className="text-2xl font-bold text-center mb-4">추가 콘텐츠 옵션</h3>
-          <p className="text-center text-gray-600 mb-8">기본 제공 콘텐츠 외에 추가로 필요한 경우 선택하세요</p>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {additionalOptions.map((option, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg p-8">
-                <div className="flex items-center mb-4">
-                  <span className="text-4xl mr-4">{option.icon}</span>
+        {/* 추가 콘텐츠 안내 */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12">
+          <div className="text-center mb-8">
+            <span className="text-4xl mb-4">{additionalInfo.icon}</span>
+            <h3 className="text-2xl font-bold mb-2">{additionalInfo.title}</h3>
+            <p className="text-gray-600">{additionalInfo.description}</p>
+          </div>
+          
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+            <h4 className="font-semibold text-lg mb-4">추가 콘텐츠 옵션 가격표</h4>
+            <div className="space-y-4 mb-6">
+              {additionalInfo.items.map((item, idx) => (
+                <div key={idx} className="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                   <div>
-                    <h4 className="text-xl font-bold">{option.title}</h4>
-                    <p className="text-gray-600">{option.description}</p>
+                    <span className="font-medium">{item.name}</span>
+                    <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
+                  <span className="font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
                 </div>
-                
-                <div className="mb-6">
-                  <h5 className="font-semibold text-gray-900 mb-3">가격 옵션</h5>
-                  <div className="space-y-3">
-                    {option.options.map((opt, idx) => (
-                      <div key={idx} className="bg-gray-50 rounded-lg p-4">
-                        <div className="flex justify-between items-center mb-1">
-                          <span className="font-medium">{opt.name}</span>
-                          <span className="font-bold text-primary">{opt.price}</span>
-                        </div>
-                        <p className="text-sm text-gray-600">{opt.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div>
-                  <h5 className="font-semibold text-gray-900 mb-3">포함 내용</h5>
-                  <ul className="space-y-2">
-                    {option.includes.map((item, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <svg className="h-5 w-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4" />
-                        </svg>
-                        <span className="text-gray-700 text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm text-yellow-800">{additionalInfo.notice}</p>
+            </div>
+            
+            <div className="mt-6 text-center">
+              <p className="text-gray-600 mb-4">추가 콘텐츠가 필요하신가요?</p>
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all"
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                매니저에게 문의하기
+              </button>
+            </div>
           </div>
         </div>
 
