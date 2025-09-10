@@ -29,7 +29,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             '입점 소형배너 등록',
             '체험단 모집 공고 지원',
             '카페 상단 타이틀 로고 등록',
-            '메인 긴 배너 노출 (주 1회 변경)'
+            '메인 긴 배너 노출 (월 1회 변경)'
           ]
         },
         {

@@ -16,7 +16,7 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
       title: '통합 입점 패키지',
       price: '30만원/월',
       originalPrice: '40만원/월',
-      description: '카페 마케팅 + 월 1건 유튜브/블로그/인스타 포함',
+      description: '카페 마케팅 + 블로그/인스타 월 1건 + 유튜브 3개월 1건 포함',
       features: [
         {
           icon: '📢',
@@ -40,12 +40,12 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
         },
         {
           icon: '🖼️',
-          title: '메인 긴 배너 노출 (주 1회 변경)',
+          title: '메인 긴 배너 노출 (월 1회 변경)',
           description: '더 자주 업데이트 가능한 메인 배너로 신제품 출시나 이벤트를 즉시 홍보할 수 있습니다.'
         },
         {
           icon: '🎬',
-          title: '유튜브 영상 제작 (월 1건)',
+          title: '유튜브 영상 제작 (3개월에 1건)',
           description: '1.12만+ 구독자 채널에 제공 물품에 대한 전문 리뷰 영상을 제작합니다.'
         },
         {
@@ -61,7 +61,7 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
       ],
       benefits: [
         '카페 마케팅 기본 패키지',
-        '월 1건 유튜브 영상 제작',
+        '3개월에 1건 유튜브 영상 제작',
         '월 1건 블로그 포스팅',
         '월 1건 인스타그램 콘텐츠',
         '제공 물품에 대한 3채널 통합 리뷰',
