@@ -99,7 +99,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
             <span className="text-3xl ml-3">🔥</span>
           </div>
           <p className="text-xl mb-2">지금 신청하면 <span className="font-bold text-yellow-300">최대 25% 할인</span>된 가격으로 이용 가능</p>
-          <p className="text-sm opacity-90">2025년 10월 1일 이후 정가 적용 예정</p>
+          <p className="text-sm opacity-90">2025년 12월 말 이후 정가 적용 예정</p>
         </div>
 
         {/* 기본 플랜 */}
@@ -147,7 +147,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
                     <div className="flex items-baseline mb-2">
                       <span className="text-5xl font-bold text-primary">{plan.price}</span>
                       <span className="text-gray-500 ml-2">/ 월</span>
-                      <span className="ml-3 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">얼리버드 (~10/1)</span>
+                      <span className="ml-3 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">얼리버드 (~25/12/31)</span>
                     </div>
                     <div className="text-sm text-gray-600 space-y-1 mt-4 p-3 bg-gray-50 rounded-lg">
                       <div className="flex justify-between">
