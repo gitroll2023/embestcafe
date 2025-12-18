@@ -9,7 +9,7 @@ const CaseStudiesSection = () => {
     {
       icon: '🎯',
       title: '정확한 타겟팅',
-      description: 'FPS 게임에 관심 있는 14.7만+ 활성 회원에게 직접 도달',
+      description: 'FPS 게임에 관심 있는 14.8만+ 활성 회원에게 직접 도달',
       stats: '95% 타겟 정확도',
       category: 'targeting'
     },
@@ -86,7 +86,7 @@ const CaseStudiesSection = () => {
   const comparisonData = [
     {
       feature: '전문 리뷰어 모집',
-      emBest: 'FPS 전문 게이머 14.7만+ 풀',
+      emBest: 'FPS 전문 게이머 14.8만+ 풀',
       general: '일반인 위주, 전문성 부족',
       highlight: true
     },
@@ -223,7 +223,7 @@ const CaseStudiesSection = () => {
         {/* 비교 테이블 */}
         <div className="mb-20">
           <h3 className="text-3xl font-bold text-center mb-8">일반 체험단 vs EM베스트 체험단</h3>
-          
+
           {/* 모바일용 간소화된 비교 */}
           <div className="lg:hidden">
             <div className="bg-white rounded-2xl shadow-xl p-6">
@@ -252,7 +252,7 @@ const CaseStudiesSection = () => {
               </div>
             </div>
           </div>
-          
+
           {/* 데스크톱용 테이블 */}
           <div className="hidden lg:block bg-white rounded-2xl shadow-xl overflow-hidden">
             <table className="w-full">
