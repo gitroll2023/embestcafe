@@ -1,0 +1,288 @@
+"use client";
+
+import React from 'react';
+import Link from 'next/link';
+
+type FormPlan = 'premium';
+
+interface PricingSectionProps {
+  onPlanSelect?: (plan: FormPlan) => void;
+}
+
+const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
+  const plans = [
+    {
+      name: '통합 입점 패키지',
+      price: '30만원',
+      threeMonthPrice: '90만원',
+      yearlyPrice: '360만원',
+      description: '카페 마케팅 + 정기 콘텐츠(블로그+인스타 월 1회, 유튜브 3개월 1회) 포함',
+      features: [
+        {
+          title: '카페 마케팅',
+          items: [
+            '전용 게시판 개설',
+            '입점 소형배너 등록',
+            '체험단 모집 공고 지원',
+            '카페 상단 타이틀 로고 등록',
+            '메인 긴 배너 노출 (월 1회 변경)'
+          ]
+        },
+        {
+          title: '정기 콘텐츠 제작 (기본 포함)',
+          items: [
+            '유튜브 영상 제작 - 3개월에 1건',
+            '네이버 블로그 포스팅 - 월 1건',
+            '인스타그램 포스트 - 월 1건',
+            '제공 물품에 대한 전문 리뷰 콘텐츠',
+            '검색 최적화 및 장기 노출 효과'
+          ]
+        }
+      ],
+      recommended: true,
+      buttonText: '통합 패키지 신청하기',
+    },
+  ];
+
+  // 추가 옵션 안내 (선택이 아닌 안내용)
+  const additionalInfo = {
+    title: '추가 콘텐츠 제작 안내',
+    description: '필요 시 매니저에게 문의해주세요',
+    icon: '📢',
+    items: [
+      {
+        name: '유튜브 추가 제작 (물품 증정)',
+        price: '15만원/건',
+        description: '리뷰 후 제품을 리뷰어에게 증정',
+        badge: '인기',
+        recommended: '50만원 이하 제품 추천'
+      },
+      {
+        name: '유튜브 추가 제작 (물품 대여)',
+        price: '30만원/건',
+        description: '리뷰 완료 후 제품 반환',
+        badge: '고가제품',
+        recommended: '50만원 이상 고가 제품 추천'
+      },
+      {
+        name: '블로그/인스타 추가',
+        price: '월 15만원',
+        description: '월 2회로 확대 (물품 제공 필수)'
+      }
+    ],
+    notice: '※ 유튜브는 3개월마다 1회 기본 제공되며, 동일 분기 내 추가 제작 시 위 금액이 적용됩니다.'
+  };
+
+  return (
+    <section id="pricing" className="container-custom">
+      <div className="max-w-7xl mx-auto">
+        {/* 섹션 헤더 */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            합리적인 <span className="text-primary">가격</span>으로<br />
+            최대의 효과를 경험하세요
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            귀사의 마케팅 목표에 맞는 패키지를 선택하고, 필요한 옵션을 추가하세요
+          </p>
+        </div>
+
+
+        {/* 기본 플랜 */}
+        <div className="mb-20">
+          <h3 className="text-2xl font-bold text-center mb-8">통합 마케팅 패키지</h3>
+          <div className="grid grid-cols-1 gap-8 max-w-3xl mx-auto">
+            {plans.map((plan, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all hover:scale-105 ${plan.recommended ? 'ring-4 ring-primary ring-opacity-50' : ''
+                  }`}
+              >
+                {plan.recommended && (
+                  <div className="bg-primary text-white text-center py-2 text-sm font-bold">
+                    🌟 가장 인기 있는 선택
+                  </div>
+                )}
+
+                <div className="p-8">
+                  <h3 className="text-3xl font-bold mb-2">{plan.name}</h3>
+                  {plan.name === '통합 입점 패키지' && (
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <div className="inline-flex items-center bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        🎬 유튜브 3개월 1건
+                      </div>
+                      <div className="inline-flex items-center bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        📝 블로그 월 1건
+                      </div>
+                      <div className="inline-flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-semibold">
+                        📸 인스타 월 1건
+                      </div>
+                    </div>
+                  )}
+                  <p className="text-gray-600 mb-6">{plan.description}</p>
+
+                  <div className="mb-6">
+                    <div className="flex items-baseline mb-2">
+                      <span className="text-5xl font-bold text-primary">{plan.price}</span>
+                      <span className="text-gray-500 ml-2">/ 월</span>
+                    </div>
+                    <div className="text-sm text-gray-600 space-y-1 mt-4 p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between">
+                        <span>3개월:</span>
+                        <span>
+                          <span className="ml-2 font-semibold">{plan.threeMonthPrice}</span>
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>12개월:</span>
+                        <span>
+                          <span className="ml-2 font-semibold">{plan.yearlyPrice}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-8">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx}>
+                        <h4 className="font-semibold text-gray-900 mb-2">{feature.title}</h4>
+                        <ul className="space-y-2">
+                          {feature.items.map((item, itemIdx) => (
+                            <li key={itemIdx} className="flex items-start">
+                              <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="text-gray-700">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      if (onPlanSelect) {
+                        onPlanSelect('premium');
+                      }
+                      const contactSection = document.getElementById('contact');
+                      if (contactSection) {
+                        const rect = contactSection.getBoundingClientRect();
+                        const absoluteTop = window.pageYOffset + rect.top;
+                        window.scrollTo({
+                          top: absoluteTop - 100,
+                          behavior: 'smooth'
+                        });
+                      }
+                    }}
+                    className={`block w-full text-center py-4 px-6 rounded-xl font-bold transition-all ${plan.recommended
+                      ? 'bg-primary text-white hover:bg-primary/90 shadow-lg'
+                      : 'bg-gray-100 text-gray-800 hover:bg-gray-200'
+                      }`}
+                  >
+                    {plan.buttonText}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-6 text-gray-600">
+            <p className="font-semibold mb-2">※ 모든 요금제는 최소 3개월 단위 계약, VAT 별도</p>
+            <p className="text-sm">※ 기본 제공: 블로그/인스타 월 1회, 유튜브 3개월 1회 (업체 제공 물품에 대한 리뷰)</p>
+            <p className="text-sm">※ 추가 콘텐츠 필요 시 매니저에게 문의해주세요</p>
+          </div>
+        </div>
+
+        {/* 추가 콘텐츠 안내 */}
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 md:p-12">
+          <div className="text-center mb-8">
+            <span className="text-4xl mb-4">{additionalInfo.icon}</span>
+            <h3 className="text-2xl font-bold mb-2">{additionalInfo.title}</h3>
+            <p className="text-gray-600">{additionalInfo.description}</p>
+          </div>
+
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-8">
+            <h4 className="font-semibold text-lg mb-4">추가 콘텐츠 옵션 가격표</h4>
+            <div className="space-y-4 mb-6">
+              {additionalInfo.items.map((item, idx) => (
+                <div key={idx} className="flex justify-between items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="font-medium">{item.name}</span>
+                      {item.badge && (
+                        <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${item.badge === '인기' ? 'bg-red-100 text-red-700' : 'bg-purple-100 text-purple-700'
+                          }`}>
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600">{item.description}</p>
+                    {item.recommended && (
+                      <p className="text-xs text-blue-600 mt-1">💡 {item.recommended}</p>
+                    )}
+                  </div>
+                  <span className="font-bold text-primary whitespace-nowrap ml-4">{item.price}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <p className="text-sm text-yellow-800">{additionalInfo.notice}</p>
+            </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-gray-600 mb-4">추가 콘텐츠가 필요하신가요?</p>
+              <button
+                onClick={() => {
+                  const contactSection = document.getElementById('contact');
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="inline-flex items-center px-6 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primary/90 transition-all"
+              >
+                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                매니저에게 문의하기
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold mb-4">
+            지금 바로 시작하세요
+          </h3>
+          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            EM베스트와 함께라면 적은 비용으로도 효과적인 마케팅이 가능합니다.<br />
+            귀사에 맞는 패키지를 선택하고 문의해주세요.
+          </p>
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                const rect = contactSection.getBoundingClientRect();
+                const absoluteTop = window.pageYOffset + rect.top;
+                window.scrollTo({
+                  top: absoluteTop - 100,
+                  behavior: 'smooth'
+                });
+              }
+            }}
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-primary rounded-full hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl"
+          >
+            무료 상담 신청하기
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default PricingSection;

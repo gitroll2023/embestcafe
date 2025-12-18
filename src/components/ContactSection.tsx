@@ -1,0 +1,553 @@
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import ApplicationFormModal from './ApplicationFormModal';
+import PlanDetailModal from './PlanDetailModal';
+import MarketingOptionModal from './MarketingOptionModal';
+import applicationForms from '../data/applicationForms.json';
+import { toast } from 'react-hot-toast';
+
+type FormPlan = 'premium';
+type ContractDuration = 3 | 6 | 12;
+type ContentMarketingType = null | 'gift' | 'rental';
+type BlogMarketingType = null | 'twice' | 'four';
+
+interface QuoteState {
+  plan: FormPlan;
+  duration: ContractDuration;
+  contentMarketing: ContentMarketingType;
+  blogMarketing: BlogMarketingType;
+}
+
+interface ContactSectionProps {
+  quoteState: QuoteState;
+  onQuoteChange: (updates: Partial<QuoteState>) => void;
+}
+
+const ContactSection: React.FC<ContactSectionProps> = ({ quoteState, onQuoteChange }) => {
+  const { plan: selectedPlan, duration: selectedDuration, contentMarketing: contentMarketingType, blogMarketing: blogMarketingType } = quoteState;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPlanModalOpen, setIsPlanModalOpen] = useState(false);
+  const [selectedPlanForModal, setSelectedPlanForModal] = useState<FormPlan>('premium');
+  const [isMarketingModalOpen, setIsMarketingModalOpen] = useState(false);
+  const [companyInfo, setCompanyInfo] = useState({
+    companyName: '',
+    contactName: '',
+    contactEmail: '',
+    contactPhone: '',
+    mainProducts: '',
+    shopUrl: ''
+  });
+  const [showActions, setShowActions] = useState(false);
+
+  // localStorage에서 저장된 정보 불러오기
+  useEffect(() => {
+    const savedInfo = localStorage.getItem('embest_company_info');
+    if (savedInfo) {
+      try {
+        const parsed = JSON.parse(savedInfo);
+        setCompanyInfo(parsed);
+      } catch (e) {
+        console.error('Failed to parse saved company info');
+      }
+    }
+  }, []);
+
+  const handlePreview = () => {
+    setIsModalOpen(true);
+  };
+
+  // 숫자를 천 단위 콤마 형식으로 변환
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat('ko-KR').format(num);
+  };
+
+  const generateApplicationForm = () => {
+    const planName = '통합 입점 패키지';
+    const basePrice = 30;
+
+    // 랜덤 영문 PIN 생성 (날짜 포함)
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let randomPart1 = '';
+    let randomPart2 = '';
+
+    // 앞부분 3자리 (영문만)
+    for (let i = 0; i < 3; i++) {
+      randomPart1 += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+
+    // 뒷부분 3자리 (영문만)
+    for (let i = 0; i < 3; i++) {
+      randomPart2 += letters.charAt(Math.floor(Math.random() * letters.length));
+    }
+
+    // 오늘 날짜와 시간 (한국 시간 기준)
+    const koreaTime = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Seoul" }));
+    const month = String(koreaTime.getMonth() + 1).padStart(2, '0');
+    const day = String(koreaTime.getDate()).padStart(2, '0');
+    const hour = String(koreaTime.getHours()).padStart(2, '0');
+    const minute = String(koreaTime.getMinutes()).padStart(2, '0');
+    const dateCode = month + day;
+    const timeCode = hour + minute;
+
+    // 최종 PIN: XXX + 날짜 + XXX + 시간
+    const randomPin = randomPart1 + dateCode + randomPart2 + timeCode;
+
+    // 추가 옵션 제거, 고정 가격으로 계산
+    const totalPrice = (basePrice * selectedDuration).toString();
+    const totalWithVat = Math.round(parseInt(totalPrice) * 1.1);
+
+    return `[EM베스트 입점 신청서]
+
+========================================
+신청 업체 정보
+========================================
+회사명: ${companyInfo.companyName}
+담당자명: ${companyInfo.contactName}
+담당자 이메일: ${companyInfo.contactEmail}
+담당자 연락처: ${companyInfo.contactPhone}
+주 판매품목: ${companyInfo.mainProducts}
+쇼핑몰 주소: ${companyInfo.shopUrl}
+
+========================================
+신청 내역
+========================================
+1. 선택 플랜: ${planName} (기본 ${basePrice}만원/월)
+2. 계약 기간: ${selectedDuration}개월
+3. 포함 내용: 블로그/인스타 월 1회, 유튜브 3개월 1회
+
+========================================
+비용 산정
+========================================
+- 기본 요금: ${basePrice}만원 × ${selectedDuration}개월 = ${basePrice * selectedDuration}만원
+
+총 비용: ₩${formatNumber(parseInt(totalPrice) * 10000)}원 (VAT 별도)
+VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
+
+========================================
+작성일: ${new Date().toLocaleString('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZone: 'Asia/Seoul'
+    })} [${randomPin}]`;
+  };
+
+  const handleCopy = () => {
+    const formContent = generateApplicationForm();
+    navigator.clipboard.writeText(formContent)
+      .then(() => {
+        toast.success('신청서가 클립보드에 복사되었습니다!');
+      })
+      .catch((err) => {
+        console.error('클립보드 복사 실패:', err);
+        toast.error('클립보드 복사에 실패했습니다.');
+      });
+  };
+
+  const calculateTotalPrice = () => {
+    const basePrice = 30;
+    const total = basePrice * selectedDuration;
+    return `${total}만원`;
+  };
+
+  const calculateMonthlyPrice = () => {
+    return 30; // 고정 가격
+  };
+
+  // 유효성 검사 함수들
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const validatePhone = (phone: string) => {
+    const re = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+    return re.test(phone);
+  };
+
+  const validateUrl = (url: string) => {
+    try {
+      new URL(url);
+      return url.startsWith('http://') || url.startsWith('https://');
+    } catch {
+      return false;
+    }
+  };
+
+  const validateCompanyInfo = () => {
+    if (!companyInfo.companyName || !companyInfo.contactName || !companyInfo.contactEmail ||
+      !companyInfo.contactPhone || !companyInfo.mainProducts || !companyInfo.shopUrl) {
+      toast.error('모든 회사 정보를 입력해주세요.');
+      return false;
+    }
+
+    if (!validateEmail(companyInfo.contactEmail)) {
+      toast.error('올바른 이메일 형식을 입력해주세요.');
+      return false;
+    }
+
+    if (!validatePhone(companyInfo.contactPhone)) {
+      toast.error('올바른 전화번호 형식을 입력해주세요. (예: 010-1234-5678)');
+      return false;
+    }
+
+    if (!validateUrl(companyInfo.shopUrl)) {
+      toast.error('올바른 URL 형식을 입력해주세요. (https://로 시작)');
+      return false;
+    }
+
+    return true;
+  };
+
+  return (
+    <section id="contact" className="container-custom bg-gray-50">
+      <div className="max-w-7xl mx-auto">
+
+        {/* 섹션 헤더 */}
+        <div id="quote-form" className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            지금 바로 <span className="text-primary">시작</span>하세요
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            원하는 옵션을 선택하고 견적을 확인해보세요
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* 왼쪽: 옵션 선택 영역 */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* 1. 기본 플랜 선택 */}
+            <div id="plan-selection" className="bg-white rounded-2xl shadow-lg p-8">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
+                기본 플랜 선택
+              </h3>
+              <div className="grid grid-cols-1 gap-4">
+                <div className="relative">
+                  <button
+                    onClick={() => onQuoteChange({ plan: 'premium' })}
+                    className={`w-full p-6 rounded-xl border-2 transition-all ${selectedPlan === 'premium'
+                      ? 'border-primary bg-primary/5'
+                      : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                  >
+                    <div className="text-left">
+                      <h4 className="font-bold text-lg mb-2">
+                        통합 입점 패키지
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mb-2">
+                        <span className="bg-purple-100 text-purple-700 px-2 py-0.5 rounded text-xs font-semibold">유튜브 3개월 1건</span>
+                        <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded text-xs font-semibold">블로그 월 1건</span>
+                        <span className="bg-pink-100 text-pink-700 px-2 py-0.5 rounded text-xs font-semibold">인스타 월 1건</span>
+                      </div>
+                      <p className="text-gray-600 mb-1">카페 마케팅 + 정기 콘텐츠 제작</p>
+                      <p className="text-xs text-purple-600 mb-2">📝 블로그/📸 인스타 월 1회 + 🎬 유튜브 3개월 1회</p>
+                      <p className="text-2xl font-bold text-primary">30만원<span className="text-sm text-gray-500">/월</span></p>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedPlanForModal('premium');
+                      setIsPlanModalOpen(true);
+                    }}
+                    className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 rounded-full p-2 transition-all"
+                    title="자세히 보기"
+                  >
+                    <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. 계약 기간 선택 */}
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
+                계약 기간 선택
+              </h3>
+              <div className="grid grid-cols-3 gap-4">
+                {[3, 6, 12].map((duration) => (
+                  <button
+                    key={duration}
+                    onClick={() => onQuoteChange({ duration: duration as ContractDuration })}
+                    className={`p-4 rounded-xl border-2 transition-all ${selectedDuration === duration
+                      ? 'border-primary bg-primary/5'
+                      : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                  >
+                    <div className="text-center">
+                      <p className="font-bold text-lg">{duration}개월</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* 3. 포함 내용 안내 */}
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <h3 className="text-xl font-bold mb-6 flex items-center">
+                <span className="bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
+                포함 내용
+              </h3>
+
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6">
+                <h4 className="font-semibold mb-4">통합 입점 패키지 포함 내용</h4>
+                <div className="space-y-3">
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">카페 마케팅</span>
+                      <p className="text-sm text-gray-600">전용 게시판, 배너, 체험단 모집 지원</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">블로그 & 인스타그램</span>
+                      <p className="text-sm text-gray-600">월 1회 콘텐츠 제작 및 게시</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <svg className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <div>
+                      <span className="font-medium">유튜브</span>
+                      <p className="text-sm text-gray-600">3개월에 1회 영상 제작 (1.12만+ 구독자)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <p className="text-sm text-gray-700 font-medium mb-2">📌 추가 콘텐츠가 필요하신가요?</p>
+                  <p className="text-xs text-gray-600 mb-2">담당 매니저와 상의 후 추가 제작이 가능합니다.</p>
+                  <div className="space-y-1 text-xs text-gray-600">
+                    <p>• 유튜브 추가 (물품 증정): 15만원/건</p>
+                    <p>• 유튜브 추가 (물품 대여): 30만원/건</p>
+                    <p>• 블로그/인스타 추가: 월 15만원</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 오른쪽: 견적 요약 및 신청 */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 lg:sticky lg:top-24">
+              <h3 className="text-xl font-bold mb-6">견적 요약</h3>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex justify-between items-center pb-4 border-b">
+                  <span className="text-gray-600">기본 플랜</span>
+                  <span className="font-medium">통합 입점 패키지</span>
+                </div>
+
+                <div className="flex justify-between items-center pb-4 border-b">
+                  <span className="text-gray-600">계약 기간</span>
+                  <span className="font-medium">{selectedDuration}개월</span>
+                </div>
+
+                <div className="flex justify-between items-center pb-4 border-b">
+                  <span className="text-gray-600">포함 콘텐츠</span>
+                  <span className="font-medium text-sm">블로그/인스타 월 1회, 유튜브 3개월 1회</span>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-gray-600">월 비용</span>
+                  <span className="font-bold text-xl">{calculateMonthlyPrice()}만원</span>
+                </div>
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-gray-600">총 비용 ({selectedDuration}개월)</span>
+                  <span className="font-bold text-2xl text-primary">{calculateTotalPrice()}</span>
+                </div>
+                <div className="border-t pt-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-500">VAT 포함</span>
+                    <span className="text-lg font-semibold">
+                      {(() => {
+                        const total = parseInt(calculateTotalPrice().replace('만원', ''));
+                        const totalWithVat = Math.round(total * 1.1);
+                        return `${totalWithVat}만원`;
+                      })()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 회사 정보 입력 */}
+              {!showActions && (
+                <div className="mt-6 p-4 bg-blue-50 rounded-xl">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="font-bold">회사 정보 입력</h4>
+                    <button
+                      onClick={() => {
+                        setCompanyInfo({
+                          companyName: '',
+                          contactName: '',
+                          contactEmail: '',
+                          contactPhone: '',
+                          mainProducts: '',
+                          shopUrl: ''
+                        });
+                        localStorage.removeItem('embest_company_info');
+                        toast.success('저장된 정보가 초기화되었습니다.');
+                      }}
+                      className="text-sm text-red-600 hover:text-red-700 font-medium"
+                    >
+                      초기화
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="회사명"
+                      value={companyInfo.companyName}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, companyName: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <input
+                      type="text"
+                      placeholder="담당자명"
+                      value={companyInfo.contactName}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, contactName: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <input
+                      type="email"
+                      placeholder="담당자 이메일"
+                      value={companyInfo.contactEmail}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, contactEmail: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <input
+                      type="tel"
+                      placeholder="담당자 연락처 (예: 010-1234-5678)"
+                      value={companyInfo.contactPhone}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, contactPhone: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <input
+                      type="text"
+                      placeholder="주 판매품목 (예: 헤드셋, 마우스, 키보드)"
+                      value={companyInfo.mainProducts}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, mainProducts: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <input
+                      type="url"
+                      placeholder="쇼핑몰 주소 (예: https://smartstore.naver.com/???)"
+                      value={companyInfo.shopUrl}
+                      onChange={(e) => {
+                        const newInfo = { ...companyInfo, shopUrl: e.target.value };
+                        setCompanyInfo(newInfo);
+                        localStorage.setItem('embest_company_info', JSON.stringify(newInfo));
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    <button
+                      onClick={() => {
+                        if (validateCompanyInfo()) {
+                          setShowActions(true);
+                        }
+                      }}
+                      className="w-full bg-primary text-white font-bold py-3 px-6 rounded-xl hover:bg-primary/90 transition-all"
+                    >
+                      정보 확인
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* 복사하기, 미리보기 버튼 */}
+              {showActions && (
+                <div className="space-y-3 mt-6">
+                  <button
+                    onClick={handleCopy}
+                    className="w-full bg-primary text-white font-bold py-4 px-6 rounded-xl hover:bg-primary/90 transition-all shadow-lg"
+                  >
+                    신청서 복사하기
+                  </button>
+
+                  <button
+                    onClick={handlePreview}
+                    className="w-full bg-gray-100 text-gray-800 font-bold py-4 px-6 rounded-xl hover:bg-gray-200 transition-all"
+                  >
+                    미리보기
+                  </button>
+
+                  <button
+                    onClick={() => setShowActions(false)}
+                    className="w-full text-gray-600 text-sm hover:text-gray-800 transition-all"
+                  >
+                    ← 정보 수정하기
+                  </button>
+                </div>
+              )}
+
+              <div className="mt-6 text-center">
+                <p className="text-sm text-gray-600 mb-2">문의 이메일</p>
+                <a href="mailto:qkrwodud30@naver.com" className="text-primary font-medium hover:underline">
+                  qkrwodud30@naver.com
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {selectedPlan && (
+        <ApplicationFormModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="EM베스트 입점 신청서"
+          content={generateApplicationForm()}
+        />
+      )}
+      <PlanDetailModal
+        isOpen={isPlanModalOpen}
+        onClose={() => setIsPlanModalOpen(false)}
+        planType={selectedPlanForModal}
+      />
+      <MarketingOptionModal
+        isOpen={isMarketingModalOpen}
+        onClose={() => setIsMarketingModalOpen(false)}
+      />
+    </section>
+  );
+};
+
+export default ContactSection;
