@@ -118,7 +118,7 @@ const IntroSection = () => {
                 <h4 className="text-xl font-bold mb-3">✅ EM베스트</h4>
                 <ul className="text-left space-y-2">
                   <li>• FPS 게이머 타겟 정밀 마케팅</li>
-                  <li>• 합리적인 비용 (월 20-30만원)</li>
+                  <li>• 합리적인 비용 (월 30만원)</li>
                   <li>• 높은 전환율 (8-10%)</li>
                   <li>• 양방향 소통과 피드백</li>
                 </ul>
