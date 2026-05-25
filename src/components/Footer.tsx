@@ -196,7 +196,7 @@ const Footer = () => {
             <div className="text-gray-500 text-sm mb-4 md:mb-0">
               <p>&copy; {currentYear} EM베스트. All rights reserved.</p>
               <p className="mt-1">
-                웹사이트 제작: <a href="https://trickcontents.co.kr/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">트릭콘텐츠</a>
+                웹사이트 제작: <span className="text-gray-400">플랜크래프트</span>
               </p>
             </div>
             <div className="flex space-x-4">

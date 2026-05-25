@@ -32,13 +32,13 @@ const FloatingQuoteBar: React.FC<FloatingQuoteBarProps> = ({
   useEffect(() => {
     const handleScroll = () => {
       const pricingSection = document.getElementById('pricing');
-      if (pricingSection) {
-        const rect = pricingSection.getBoundingClientRect();
-        // PricingSection이 화면에 나타나기 시작하면 계속 표시
-        if (rect.top < window.innerHeight) {
-          setShowBar(true);
-        }
-      }
+      const footer = document.querySelector('footer');
+      if (!pricingSection) return;
+
+      const pricingVisible = pricingSection.getBoundingClientRect().top < window.innerHeight;
+      const footerVisible = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+
+      setShowBar(pricingVisible && !footerVisible);
     };
 
     window.addEventListener('scroll', handleScroll);
