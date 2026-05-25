@@ -21,7 +21,7 @@ const HeroSection = () => {
           <div className="text-center mb-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 px-6 py-3 rounded-full backdrop-blur-sm">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span className="text-primary font-medium">14.8만 게이머가 선택한 No.1 FPS 커뮤니티</span>
+              <span className="text-primary font-medium">15만 게이머가 선택한 No.1 FPS 커뮤니티</span>
             </div>
           </div>
 
@@ -30,7 +30,7 @@ const HeroSection = () => {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               당신의 제품을<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                14.8만 타겟 고객
+                15만 타겟 고객
               </span>에게<br />
               직접 전달하세요
             </h1>
@@ -44,7 +44,7 @@ const HeroSection = () => {
           {/* 핵심 지표 */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 animate-fade-in delay-200">
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
-              <div className="text-3xl font-bold text-primary mb-2">14.8만+</div>
+              <div className="text-3xl font-bold text-primary mb-2">15만+</div>
               <div className="text-gray-400">활성 회원</div>
             </div>
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">

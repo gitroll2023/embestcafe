@@ -9,7 +9,7 @@ const CaseStudiesSection = () => {
     {
       icon: '🎯',
       title: '정확한 타겟팅',
-      description: 'FPS 게임에 관심 있는 14.8만+ 활성 회원에게 직접 도달',
+      description: 'FPS 게임에 관심 있는 15만+ 활성 회원에게 직접 도달',
       stats: '95% 타겟 정확도',
       category: 'targeting'
     },
@@ -86,7 +86,7 @@ const CaseStudiesSection = () => {
   const comparisonData = [
     {
       feature: '전문 리뷰어 모집',
-      emBest: 'FPS 전문 게이머 14.8만+ 풀',
+      emBest: 'FPS 전문 게이머 15만+ 풀',
       general: '일반인 위주, 전문성 부족',
       highlight: true
     },

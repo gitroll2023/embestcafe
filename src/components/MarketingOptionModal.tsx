@@ -35,7 +35,7 @@ const MarketingOptionModal: React.FC<MarketingOptionModalProps> = ({ isOpen, onC
       {
         icon: '☕',
         name: 'EM베스트 카페',
-        stats: '회원 14.8만+',
+        stats: '회원 15만+',
         description: '공식 리뷰 게시 및 확산'
       }
     ],
