@@ -15,7 +15,7 @@ const HeroSection = () => {
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
 
-      <div className="container mx-auto px-4 relative z-10 py-16 md:py-24">
+      <div className="container mx-auto px-4 relative z-10 pt-28 pb-16 md:py-24">
         <div className="max-w-6xl mx-auto">
           {/* 상단 배지 */}
           <div className="text-center mb-8 animate-fade-in">
