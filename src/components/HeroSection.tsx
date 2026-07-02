@@ -42,7 +42,7 @@ const HeroSection = () => {
           </div>
 
           {/* 핵심 지표 */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12 animate-fade-in delay-200">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 animate-fade-in delay-200">
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
               <div className="text-3xl font-bold text-primary mb-2">15만+</div>
               <div className="text-gray-400">활성 회원</div>
@@ -55,10 +55,6 @@ const HeroSection = () => {
             <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
               <div className="text-3xl font-bold text-primary mb-2">95%</div>
               <div className="text-gray-400">타겟 정확도</div>
-            </div>
-            <div className="bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
-              <div className="text-3xl font-bold text-primary mb-2">8-10%</div>
-              <div className="text-gray-400">평균 전환율</div>
             </div>
           </div>
 

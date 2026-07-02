@@ -18,7 +18,7 @@ const PartnersSection = () => {
     {
       icon: '📈',
       title: '검증된 성과',
-      description: '평균 전환율 8-10%, 체험단 리뷰 완료율 96% 달성'
+      description: '체험단 리뷰 완료율 96% 달성'
     },
     {
       icon: '🤝',
