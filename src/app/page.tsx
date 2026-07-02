@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
 import IntroSection from '../components/IntroSection';
 import BenefitsSection from '../components/BenefitsSection';
+import EmFitSection from '../components/EmFitSection';
 import CaseStudiesSection from '../components/CaseStudiesSection';
 import PricingSection from '../components/PricingSection';
 import PartnersSection from '../components/PartnersSection';
@@ -44,6 +45,7 @@ export default function Home() {
         <HeroSection />
         <IntroSection />
         <BenefitsSection />
+        <EmFitSection />
         <CaseStudiesSection />
         <PricingSection onPlanSelect={(plan) => handleQuoteChange({ plan })} />
         <PartnersSection />
