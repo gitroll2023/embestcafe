@@ -15,7 +15,7 @@ const EmFitSection = () => {
             AI가 콕 집어주는<br className="md:hidden" /> <span className="text-primary">EM템핏</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            게임 종류, 손 크기, 손목 상태만 입력하면<br className="md:hidden" />
+            게임 종류, 손 크기, 손목 상태만 입력하면{' '}<br className="md:hidden" />
             AI가 1분 만에 나에게 딱 맞는 장비 하나를 추천합니다
           </p>
         </div>
@@ -37,7 +37,7 @@ const EmFitSection = () => {
         </div>
 
         {/* 입점 vs 미입점 비교 */}
-        <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-12 mb-10 text-white">
+        <div className="bg-gradient-to-br from-primary/25 via-ink-800 to-ink-800 border border-primary/30 rounded-3xl p-8 md:p-12 mb-10 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-8">
               추천 결과, 입점 여부로 노출이 갈립니다

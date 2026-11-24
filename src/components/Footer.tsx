@@ -40,7 +40,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white pt-16 pb-8">
+    <footer className="bg-ink-900 border-t border-white/10 text-white pt-16 pb-8">
       <div className="container mx-auto px-4">
 
 

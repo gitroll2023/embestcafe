@@ -36,12 +36,12 @@ export default function RootLayout({
             },
             success: {
               style: {
-                background: '#4CAF50',
+                background: '#1f7a4d',
               },
             },
             error: {
               style: {
-                background: '#4CAF50',
+                background: '#a82f3c',
               },
             },
           }}

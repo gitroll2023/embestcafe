@@ -75,7 +75,7 @@ const IntroSection = () => {
         </div>
 
         {/* 통계 카드 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6 mb-20">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 text-primary rounded-full mb-4">
@@ -89,7 +89,7 @@ const IntroSection = () => {
         </div>
 
         {/* 중간 섹션 - 왜 EM베스트를 선택해야 하는가 */}
-        <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-12 mb-20 text-white">
+        <div className="bg-gradient-to-br from-primary/25 via-ink-800 to-ink-800 border border-primary/30 rounded-3xl p-12 mb-20 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-bold mb-6">
               일반 마케팅 대행사와의 차이점

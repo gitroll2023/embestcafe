@@ -117,7 +117,7 @@ const FaqSection = () => {
         </div>
 
         {/* CTA 섹션 */}
-        <div className="mt-16 bg-gradient-to-r from-primary to-blue-600 rounded-3xl p-8 md:p-12 text-white">
+        <div className="mt-16 bg-gradient-to-br from-primary/25 via-ink-800 to-accent/10 border border-white/10 rounded-3xl p-8 md:p-12 text-white">
           <div className="text-center mb-8">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               아직 결정이 어려우신가요?

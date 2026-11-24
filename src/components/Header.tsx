@@ -59,6 +59,7 @@ const Header = () => {
                   width={120}
                   height={40}
                   className="h-auto"
+                  style={{ filter: 'brightness(0) invert(1)' }}
                 />
                 <span className="hidden lg:inline-block text-sm font-medium ml-3 text-gray-600">
                   네이버 대표 FPS 장비 카페

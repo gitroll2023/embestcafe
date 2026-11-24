@@ -87,6 +87,26 @@ const PricingSection: React.FC<PricingSectionProps> = ({ onPlanSelect }) => {
           </p>
         </div>
 
+        {/* 1년 계약 안내 */}
+        <div className="max-w-3xl mx-auto mb-12 rounded-2xl border-2 border-primary/40 bg-gradient-to-r from-primary/10 to-blue-50 p-6 md:p-8 text-center shadow-lg">
+          <div className="inline-flex items-center gap-2 bg-primary text-white text-sm font-bold px-4 py-1 rounded-full mb-4">
+            🎁 1년 계약 특별 안내
+          </div>
+          <p className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+            처음부터 1년 계약을 생각하고 계신가요?
+          </p>
+          <p className="text-gray-700 leading-relaxed">
+            1년 계약 시 <strong className="text-primary">조건을 최대한 맞춰드려</strong>,
+            아래 기본 가격보다 <strong className="text-primary">할인된 가격</strong>으로 만나보실 수 있습니다.<br />
+            부담 없이 먼저 문의해 주세요.
+          </p>
+          <Link
+            href="#contact"
+            className="inline-flex items-center justify-center mt-5 px-8 py-3 rounded-full bg-primary text-white font-bold shadow-md hover:scale-105 transition-transform"
+          >
+            1년 계약 조건 문의하기
+          </Link>
+        </div>
 
         {/* 기본 플랜 */}
         <div className="mb-20">

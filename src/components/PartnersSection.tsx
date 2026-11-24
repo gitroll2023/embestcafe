@@ -61,7 +61,7 @@ const PartnersSection = () => {
         <div className="mb-20 bg-gray-50 rounded-3xl p-8 md:p-12 text-center">
           <h3 className="text-2xl font-bold mb-6">함께하는 파트너사</h3>
           <p className="text-lg text-gray-600 mb-8">
-            파트너사 현황은 지속적으로 업데이트되므로,<br className="hidden md:block" />
+            파트너사 현황은 지속적으로 업데이트되므로,{' '}<br className="hidden md:block" />
             가장 정확한 최신 파트너사 정보는 공식 카페에서 확인하실 수 있습니다.
           </p>
           <a
@@ -79,7 +79,7 @@ const PartnersSection = () => {
 
 
         {/* 파트너사 혜택 */}
-        <div className="mb-20 bg-gradient-to-r from-primary to-blue-600 rounded-3xl p-8 md:p-12 text-white">
+        <div className="mb-20 bg-gradient-to-br from-primary/25 via-ink-800 to-accent/10 border border-white/10 rounded-3xl p-8 md:p-12 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <h3 className="text-3xl font-bold mb-6">EM베스트 파트너사 지원 서비스</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">

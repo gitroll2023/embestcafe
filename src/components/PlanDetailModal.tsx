@@ -75,7 +75,7 @@ const PlanDetailModal: React.FC<PlanDetailModalProps> = ({ isOpen, onClose, plan
   return (
     <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-        <div className="bg-gradient-to-r from-primary to-blue-600 text-white p-6">
+        <div className="bg-gradient-to-r from-primary/30 to-ink-800 border-b border-white/10 text-white p-6">
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-3xl font-bold mb-2">{plan.title}</h2>
