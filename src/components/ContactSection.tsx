@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ApplicationFormModal from './ApplicationFormModal';
 import PlanDetailModal from './PlanDetailModal';
 import MarketingOptionModal from './MarketingOptionModal';
+import NameCard from './NameCard';
 import applicationForms from '../data/applicationForms.json';
 import { toast } from 'react-hot-toast';
 
@@ -217,6 +218,8 @@ VAT 포함: ₩${formatNumber(totalWithVat * 10000)}원
             원하는 옵션을 선택하고 견적을 확인해보세요
           </p>
         </div>
+
+        <NameCard />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* 왼쪽: 옵션 선택 영역 */}
